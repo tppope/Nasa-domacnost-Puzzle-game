@@ -1,0 +1,70 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+div#title_picture {
+    position: relative;
+    height: 56vw;
+    border-radius: 50px;
+    overflow: hidden;
+}
+div#title_picture img {
+    position: absolute;
+    transition: all 2s;
+}
+img#grass {
+    width: 100%;
+    bottom: -200%;
+}
+img#nebo {
+    width: 100%;
+    top: -100%;
+}
+img#middle {
+    top: -100%;
+    width: 32%;
+    left: -100%;
+}
+img#left_down {
+    left: -100%;
+    bottom: -100%;
+    width: 48%;
+}
+img#left_up {
+    top: -200%;
+    left: -100%;
+    width: 37.6%;
+}
+img#right {
+    right: -100%;
+    bottom: -100%;
+    width: 36.3%;
+}
+h1 {
+    font-size: 5vw;
+    font-family: "Chalkduster";
+}
+div#title {
+    padding: 30px 0 30px 0;
+    text-align: center;
+    color: dodgerblue;
+}
+img.square {
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: black 5px 5px 5px;
+
+    width: 300px;
+    height: 300px;
+}
+footer {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    padding: 10px;
+}
