@@ -41,11 +41,11 @@ h1 {
     text-align: center;
     color: dodgerblue;
     font-size: 7vw;
-    font-family: "Chalkduster", serif;
+    font-family: "Chalkduster","Comic Sans MS",sans-serif;
 }
 h2 {
     font-size: 5vw;
-    font-family: "Chalkduster", serif;
+    font-family: "Chalkduster","Comic Sans MS",sans-serif;
 }
 img.square {
     position: absolute;
@@ -76,7 +76,7 @@ div.puzzleImg div {
     font-size: 4vw;
     float: left;
     color: white;
-    font-family: Chalkduster,serif;
+    font-family: "Chalkduster","Comic Sans MS",sans-serif;
     width: 35vw;
     height: 35vw;
     margin: 0;
