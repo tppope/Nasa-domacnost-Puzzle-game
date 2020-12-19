@@ -1,3 +1,7 @@
+@font-face {
+    font-family: PernamentMarker;
+    src:url('font/PermanentMarker-Regular.ttf')
+}
 div#title_picture {
     position: relative;
     height: 56vw;
@@ -37,17 +41,15 @@ img#right {
     width: 36.3%;
 }
 h1 {
-    font-size: 7vw;
-    font-family: "Chalkduster","Comic Sans MS",sans-serif;
-}
-h2 {
-    font-size: 5vw;
-    font-family: "Chalkduster","Comic Sans MS",sans-serif;
-}
-div#title {
     padding: 30px 0 30px 0;
     text-align: center;
     color: dodgerblue;
+    font-size: 7vw;
+    font-family: "Chalkduster",PernamentMarker,"Comic Sans MS",sans-serif;
+}
+h2 {
+    font-size: 5vw;
+    font-family: "Chalkduster",PernamentMarker,"Comic Sans MS",sans-serif;
 }
 img.square {
     position: absolute;
@@ -78,7 +80,7 @@ div.puzzleImg div {
     font-size: 4vw;
     float: left;
     color: white;
-    font-family: "Chalkduster","Comic Sans MS",sans-serif;
+    font-family: "Chalkduster",PernamentMarker,"Comic Sans MS",sans-serif;
     width: 35vw;
     height: 35vw;
     margin: 0;
