@@ -2,6 +2,7 @@
     font-family: PernamentMarker;
     src:url('font/PermanentMarker-Regular.ttf')
 }
+/*Title page*/
 div#title_picture {
     position: relative;
     height: 56vw;
@@ -41,14 +42,15 @@ img#right {
     width: 36.3%;
 }
 h1 {
-    padding: 30px 0 30px 0;
+    padding: 4% 0 4% 0;
     text-align: center;
     color: dodgerblue;
-    font-size: 7vw;
+    font-size: 6vw;
     font-family: "Chalkduster",PernamentMarker,"Comic Sans MS",sans-serif;
 }
 h2 {
-    font-size: 5vw;
+    font-size: 4vw;
+    padding-top: 9%;
     font-family: "Chalkduster",PernamentMarker,"Comic Sans MS",sans-serif;
 }
 img.square {
@@ -68,7 +70,7 @@ div.puzzleImg {
     position: relative;
     display: inline-block;
     background-color: green;
-    margin: 50px 6vw;
+    margin: 6% 6vw;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: black 5px 5px 5px;
@@ -88,10 +90,10 @@ div.puzzleImg div {
 }
 @media (max-width: 768px) {
     h1 {
-        font-size: 9vw;
+        font-size: 12vw;
     }
     h2 {
-        font-size: 7vw;
+        font-size: 9vw;
     }
     div.puzzleImg {
         width: 65vw;
@@ -104,7 +106,7 @@ div.puzzleImg div {
     }
 }
 article#choose_puzzle{
-    padding-top: 60px;
+
     text-align: center;
 }
 footer {

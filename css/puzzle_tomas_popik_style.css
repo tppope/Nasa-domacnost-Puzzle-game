@@ -1,0 +1,99 @@
+div#puzzle_space {
+    position: relative;
+    height: 30vw;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 3px;
+    margin-bottom: 15vw;
+}
+
+div#puzzle_space *{
+    position: absolute;
+}
+
+.floor {
+    width: 100%;
+}
+img#floor_draggable {
+    bottom: 0;
+    left: 0;
+}
+.night_table {
+    width: 17.8%;
+}
+img#night_table_draggable {
+    top: 54%;
+    left: 0;
+}
+.bed{
+    width: 57.2%;
+}
+img#bed_draggable{
+    top: 60.4%;
+    left: 12.8%;
+}
+.pillows{
+    width: 28%;
+}
+img#pillows_draggable{
+    top: 53%;
+    left: 15.3%;
+}
+.upper_bed{
+    width: 32.8%;
+}
+img#upper_bed_draggable{
+    top: 37.2%;
+    left: 8.5%;
+}
+.upper_wall {
+    width: 79.8%;
+}
+img#upper_wall_draggable {
+    top: 0;
+    right: 0;
+}
+.left_wall {
+    width: 50%;
+}
+img#left_wall_draggable {
+    top: 0;
+    left: 0;
+}
+.missing_wall {
+    width: 5.65%;
+}
+img#missing_wall_draggable {
+    left: 46.5%;
+    top: 17.2%;
+}
+.right_wall {
+    width: 48%;
+}
+img#right_wall_draggable{
+    right: 0;
+    top: 43%;
+}
+.right_upper_wall {
+    width: 48.5%;
+}
+img#right_upper_wall_draggable{
+    right: 0;
+    top: 2.5%;
+}
+
+div#floor_droppable {
+    border: black solid 3px;
+    bottom: 0;
+    left: 0;
+    height: 30%;
+    z-index: -1;
+}
+div#night_table_droppable {
+    border: black solid 3px;
+    bottom: 10%;
+    left: 0;
+    height: 30%;
+    z-index: -1;
+}
