@@ -9,6 +9,10 @@ let missing_wall_right_place = ["17.2%", "46.5%"];
 let right_wall_right_place = ["43%", "52%"];
 let right_upper_wall_right_place = ["2.5%", "51.5%"];
 
+let right_places = [floor_right_place,night_table_right_place,bed_right_place,pillows_right_place,upper_bed_right_place,
+    left_wall_right_place, upper_wall_right_place, missing_wall_right_place, right_wall_right_place,right_upper_wall_right_place];
+
+
 let floor_wrong_place = ["120%", "-60%"];
 let night_table_wrong_place = ["10%", "-50%"];
 let bed_wrong_place = ["127%", "100%"];
@@ -19,6 +23,9 @@ let upper_wall_wrong_place = ["105%", "40%"];
 let missing_wall_wrong_place = ["5%", "-20%"];
 let right_wall_wrong_place = ["127%", "45%"];
 let right_upper_wall_wrong_place = ["65%", "-55%"];
+
+let wrong_places = [floor_wrong_place,night_table_wrong_place,bed_wrong_place,pillows_wrong_place,upper_bed_wrong_place,
+    left_wall_wrong_place,upper_wall_wrong_place,missing_wall_wrong_place,right_wall_wrong_place,right_upper_wall_wrong_place];
 
 let floor_wrong_place_mobile = ["170%", "0"];
 let night_table_wrong_place_mobile = ["145%", "10%"];
@@ -31,7 +38,20 @@ let missing_wall_wrong_place_mobile = ["140%", "-3%"];
 let right_wall_wrong_place_mobile = ["110%", "-4%"];
 let right_upper_wall_wrong_place_mobile = ["200%", "-3%"];
 
+let wrong_places_mobile = [floor_wrong_place_mobile,night_table_wrong_place_mobile,bed_wrong_place_mobile,pillows_wrong_place_mobile,upper_bed_wrong_place_mobile,
+    left_wall_wrong_place_mobile,upper_wall_wrong_place_mobile,missing_wall_wrong_place_mobile,right_wall_wrong_place_mobile,right_upper_wall_wrong_place_mobile];
+
+
 let mediaQuery = window.matchMedia("(max-width: 768px)");
+let mediaQueryChange = false;
+
+mediaQuery.addListener(mediaQueryPuzzle);
+
+
+function mediaQueryPuzzle (){
+    setTimeout(settingMediaQueryChangeTrue,70);
+    setTimeout(setWrongPlace,80);
+}
 
 $(window).on("load",function () {
     cancelDragAndDrop();
@@ -62,15 +82,16 @@ function cancelDragAndDrop(){
 }
 
 function setDragAndDrop(name,right_place) {
-    document.getElementById(name+"_draggable").draggable = true;
-    $( "#"+name+"_draggable" ).draggable({
+    let draggableImage = document.getElementById(name+"_draggable");
+    draggableImage.draggable = true;
+    $( draggableImage ).draggable({
         revert: "invalid",
         disabled: false,
         start: function (){
-            document.getElementById(name+"_draggable").style.zIndex = "1";
+            draggableImage.style.zIndex = "1";
         },
         stop: function (){
-            document.getElementById(name+"_draggable").style.zIndex = "0";
+            draggableImage.style.zIndex = "0";
         }
     });
 
@@ -78,10 +99,10 @@ function setDragAndDrop(name,right_place) {
         accept: "#"+name+"_draggable",
         tolerance: "fit",
         drop: function( event, ui ) {
-            document.getElementById(name+"_draggable").style.transition = "all 1s";
-            changePosition(name,right_place);
-            $( "#"+name+"_draggable" ).draggable( "option", "disabled", true );
-            document.getElementById(name+"_draggable").draggable = false;
+            draggableImage.style.transition = "all 1s";
+            changePosition(draggableImage,right_place);
+            $( draggableImage ).draggable( "option", "disabled", true );
+            draggableImage.draggable = false;
             if(checkAllDropped()){
                 endGame();
             }
@@ -93,13 +114,21 @@ function playDemo(){
     setTimeout(change_reset_button(),1);
     setTimeout(cancelDragAndDrop(),10);
     startPlace();
-    setTimeout(turnOnTransition,40);
-    setTimeout(setRightPlace,50);
+    setTimeout(turnOnTransition,50);
+    setTimeout(setRightPlace,60);
 }
 
 function startPlace(){
-    setTimeout(turnOffTransition,20);
-    setTimeout(setWrongPlace,30);
+    setTimeout(settingMediaQueryChangeFalse,20)
+    setTimeout(turnOffTransition,30);
+    setTimeout(setWrongPlace,40);
+}
+
+function settingMediaQueryChangeTrue() {
+    mediaQueryChange = true;
+}
+function settingMediaQueryChangeFalse() {
+    mediaQueryChange = false;
 }
 
 function play(){
@@ -132,51 +161,44 @@ function change_reset_button() {
     }
 }
 
-function changePosition(name,place){
-    document.getElementById(name+"_draggable").style.top = place[0];
-    document.getElementById(name+"_draggable").style.left = place[1];
+function changePosition(element,place){
+    element.style.top = place[0];
+    element.style.left = place[1];
 }
 
 function setWrongPlace() {
-    if(mediaQuery.matches){
-        changePosition("floor",floor_wrong_place_mobile);
-        changePosition("night_table",night_table_wrong_place_mobile);
-        changePosition("bed",bed_wrong_place_mobile);
-        changePosition("pillows",pillows_wrong_place_mobile);
-        changePosition("upper_bed",upper_bed_wrong_place_mobile);
-        changePosition("left_wall",left_wall_wrong_place_mobile);
-        changePosition("upper_wall",upper_wall_wrong_place_mobile);
-        changePosition("missing_wall",missing_wall_wrong_place_mobile);
-        changePosition("right_wall",right_wall_wrong_place_mobile);
-        changePosition("right_upper_wall",right_upper_wall_wrong_place_mobile);
-    }
-    else{
-        changePosition("floor",floor_wrong_place);
-        changePosition("night_table",night_table_wrong_place);
-        changePosition("bed",bed_wrong_place);
-        changePosition("pillows",pillows_wrong_place);
-        changePosition("upper_bed",upper_bed_wrong_place);
-        changePosition("left_wall",left_wall_wrong_place);
-        changePosition("upper_wall",upper_wall_wrong_place);
-        changePosition("missing_wall",missing_wall_wrong_place);
-        changePosition("right_wall",right_wall_wrong_place);
-        changePosition("right_upper_wall",right_upper_wall_wrong_place);
-    }
+    let puzzle = document.getElementById("puzzle_space");
+    let images = puzzle.getElementsByTagName("img");
+    Array.from(images).forEach(function (element, index) {
+        if(mediaQuery.matches)
+        {
+            if(mediaQueryChange)
+            {
+                if(element.draggable === true)
+                    changePosition(element,wrong_places_mobile[index]);
+            }
+            else
+                changePosition(element,wrong_places_mobile[index]);
+        }
 
-
+        else{
+            if(mediaQueryChange)
+            {
+                if(element.draggable === true)
+                    changePosition(element,wrong_places[index]);
+            }
+            else
+                changePosition(element,wrong_places[index]);
+        }
+    })
 }
 
 function setRightPlace() {
-    changePosition("floor",floor_right_place);
-    changePosition("night_table",night_table_right_place);
-    changePosition("bed",bed_right_place);
-    changePosition("pillows",pillows_right_place);
-    changePosition("upper_bed",upper_bed_right_place);
-    changePosition("left_wall",left_wall_right_place);
-    changePosition("upper_wall",upper_wall_right_place);
-    changePosition("missing_wall",missing_wall_right_place);
-    changePosition("right_wall",right_wall_right_place);
-    changePosition("right_upper_wall",right_upper_wall_right_place);
+    let puzzle = document.getElementById("puzzle_space");
+    let images = puzzle.getElementsByTagName("img");
+    Array.from(images).forEach(function (element, index) {
+        changePosition(element,right_places[index]);
+    })
 }
 
 function turnOffTransition() {
@@ -211,7 +233,6 @@ function checkAllDropped(){
 function endGame(){
     pause();
     showModal();
-
 }
 
 function showModal(){

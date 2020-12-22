@@ -19,11 +19,9 @@ div#puzzle_space {
         margin-bottom: 108vw;
     }
     #buttons {
-        top: 0;
         left: 5vw !important;
     }
     #display {
-        top: 45%;
         right: 5vw !important;
     }
 }
@@ -61,17 +59,16 @@ img#upper_bed_draggable{
     left: 8.5%;
     width: 32.8%;
 }
-img#upper_wall_draggable {
-    top: 0;
-    left: 20.2%;
-    width: 79.8%;
-}
 img#left_wall_draggable {
     top: 0;
     left: 0;
     width: 50%;
 }
-
+img#upper_wall_draggable {
+    top: 0;
+    left: 20.2%;
+    width: 79.8%;
+}
 img#missing_wall_draggable {
     top: 17.2%;
     left: 46.5%;
