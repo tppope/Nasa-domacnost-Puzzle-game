@@ -41,10 +41,14 @@
             </div>
         </div>
     </div>
+    <div id="interfacePuzzle">
+        <div id="buttons">
+            <button type="button" id="start_button" class="btn btn-outline-success" onclick="play()">Start</button>
+            <button type="button" id="demo_button" class="btn btn-warning" onclick="playDemo()">Demo</button>
+        </div>
+         <span class="time" id="display">00:00:00</span>
+    </div>
 
-    <button type="button" id="start_button" class="btn btn-outline-success" onclick="play()">Start</button>
-    <button type="button" class="btn btn-warning" onclick="playDemo()">Demo</button>
-    <span class="time" id="display">00:00:00</span>
     <div id="puzzle_space">
         <img id="floor_draggable" class="floor_wrong_place" src="resources/pictures/popik_pictures/floor.png" alt="floor">
         <div id="floor_droppable"></div>
@@ -78,6 +82,8 @@
 
     </div>
 </section>
-
+<footer>
+    <span id="designedBy">Created by Tomáš Popík, 97908</span>
+</footer>
 </body>
 </html>

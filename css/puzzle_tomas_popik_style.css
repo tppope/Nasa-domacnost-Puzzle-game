@@ -5,10 +5,28 @@ div#puzzle_space {
     margin-left: auto;
     margin-right: auto;
     border: black solid 3px;
-    margin-bottom: 70vw;
-    margin-top: 5px;
+    margin-bottom: 20vw;
 }
-
+#interfacePuzzle {
+    position: relative;
+    height: 45px;
+    width: 100%;
+}
+@media (max-width: 768px) {
+    div#puzzle_space {
+        height: 60vw;
+        width: 90%;
+        margin-bottom: 108vw;
+    }
+    #buttons {
+        top: 0;
+        left: 5vw !important;
+    }
+    #display {
+        top: 45%;
+        right: 5vw !important;
+    }
+}
 div#puzzle_space *{
     position: absolute;
 }
@@ -137,10 +155,16 @@ h3{
 .modal-body{
     text-align: center;
 }
-#start_button {
-    margin-left: 27.5vw;
+#buttons {
+    position: absolute;
+    top: 0;
+    left: 27.5vw;
 }
-
+#demo_button {
+    margin-left: 5px;
+}
 #display{
-    margin-left: 20%;
+    position: absolute;
+    top: 45%;
+    right: 28vw;
 }

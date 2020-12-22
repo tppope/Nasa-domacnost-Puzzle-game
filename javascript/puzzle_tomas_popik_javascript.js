@@ -20,6 +20,19 @@ let missing_wall_wrong_place = ["5%", "-20%"];
 let right_wall_wrong_place = ["127%", "45%"];
 let right_upper_wall_wrong_place = ["65%", "-55%"];
 
+let floor_wrong_place_mobile = ["170%", "0"];
+let night_table_wrong_place_mobile = ["145%", "10%"];
+let bed_wrong_place_mobile = ["127%", "48%"];
+let pillows_wrong_place_mobile = ["160%", "30%"];
+let upper_bed_wrong_place_mobile = ["253%", "10%"];
+let left_wall_wrong_place_mobile = ["203%", "50%"];
+let upper_wall_wrong_place_mobile = ["105%", "25%"];
+let missing_wall_wrong_place_mobile = ["140%", "-3%"];
+let right_wall_wrong_place_mobile = ["110%", "-4%"];
+let right_upper_wall_wrong_place_mobile = ["200%", "-3%"];
+
+let mediaQuery = window.matchMedia("(max-width: 768px)");
+
 $(window).on("load",function () {
     cancelDragAndDrop();
 });
@@ -125,16 +138,32 @@ function changePosition(name,place){
 }
 
 function setWrongPlace() {
-    changePosition("floor",floor_wrong_place);
-    changePosition("night_table",night_table_wrong_place);
-    changePosition("bed",bed_wrong_place);
-    changePosition("pillows",pillows_wrong_place);
-    changePosition("upper_bed",upper_bed_wrong_place);
-    changePosition("left_wall",left_wall_wrong_place);
-    changePosition("upper_wall",upper_wall_wrong_place);
-    changePosition("missing_wall",missing_wall_wrong_place);
-    changePosition("right_wall",right_wall_wrong_place);
-    changePosition("right_upper_wall",right_upper_wall_wrong_place);
+    if(mediaQuery.matches){
+        changePosition("floor",floor_wrong_place_mobile);
+        changePosition("night_table",night_table_wrong_place_mobile);
+        changePosition("bed",bed_wrong_place_mobile);
+        changePosition("pillows",pillows_wrong_place_mobile);
+        changePosition("upper_bed",upper_bed_wrong_place_mobile);
+        changePosition("left_wall",left_wall_wrong_place_mobile);
+        changePosition("upper_wall",upper_wall_wrong_place_mobile);
+        changePosition("missing_wall",missing_wall_wrong_place_mobile);
+        changePosition("right_wall",right_wall_wrong_place_mobile);
+        changePosition("right_upper_wall",right_upper_wall_wrong_place_mobile);
+    }
+    else{
+        changePosition("floor",floor_wrong_place);
+        changePosition("night_table",night_table_wrong_place);
+        changePosition("bed",bed_wrong_place);
+        changePosition("pillows",pillows_wrong_place);
+        changePosition("upper_bed",upper_bed_wrong_place);
+        changePosition("left_wall",left_wall_wrong_place);
+        changePosition("upper_wall",upper_wall_wrong_place);
+        changePosition("missing_wall",missing_wall_wrong_place);
+        changePosition("right_wall",right_wall_wrong_place);
+        changePosition("right_upper_wall",right_upper_wall_wrong_place);
+    }
+
+
 }
 
 function setRightPlace() {
