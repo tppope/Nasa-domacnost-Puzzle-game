@@ -11,6 +11,7 @@
 
     <script src="javascript/jQuery/jquery-3.5.1.min.js"></script>
     <script src="javascript/jQuery/jquery-ui.min.js"></script>
+    <script src="javascript/jQuery/jquery.ui.touch-punch.min.js"></script>
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
     <script src="javascript/puzzle_tomas_popik_javascript.js"></script>
 
@@ -25,22 +26,55 @@
     </nav>
 </header>
 <section>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">GRATULUJEME!</h3>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvoriť</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" id="start_button" class="btn btn-outline-success" onclick="play()">Start</button>
+    <button type="button" class="btn btn-warning" onclick="playDemo()">Demo</button>
+    <span class="time" id="display">00:00:00</span>
     <div id="puzzle_space">
-        <img id="floor_draggable" class="floor" src="resources/pictures/popik_pictures/floor.png" alt="floor">
-<!--        <div id="floor_droppable" class="floor"></div>-->
+        <img id="floor_draggable" class="floor_wrong_place" src="resources/pictures/popik_pictures/floor.png" alt="floor">
+        <div id="floor_droppable"></div>
 
-        <img id="night_table_draggable" class="night_table" src="resources/pictures/popik_pictures/night_table.png" alt="night_table">
-<!--        <div id="night_table_droppable" class="night_table"></div>-->
+        <img id="night_table_draggable" src="resources/pictures/popik_pictures/night_table.png" alt="night_table">
+        <div id="night_table_droppable"></div>
 
+        <img id="bed_draggable" src="resources/pictures/popik_pictures/bed.png" alt="bed">
+        <div id="bed_droppable"></div>
 
-        <img id="bed_draggable" class="bed" src="resources/pictures/popik_pictures/bed.png" alt="bed">
-        <img id="pillows_draggable" class="pillows" src="resources/pictures/popik_pictures/pillows.png" alt="pillows">
-        <img id="upper_bed_draggable" class="upper_bed" src="resources/pictures/popik_pictures/upper_bed.png" alt="upper_bed">
-        <img id="left_wall_draggable" class="left_wall" src="resources/pictures/popik_pictures/left_wall.png" alt="left_wall">
-        <img id="upper_wall_draggable" class="upper_wall" src="resources/pictures/popik_pictures/upper_wall.png" alt="upper_wall">
-        <img id="missing_wall_draggable" class="missing_wall" src="resources/pictures/popik_pictures/missing_wall.png" alt="missing_wall">
-        <img id="right_wall_draggable" class="right_wall" src="resources/pictures/popik_pictures/right_wall.png" alt="right_wall">
-        <img id="right_upper_wall_draggable" class="right_upper_wall" src="resources/pictures/popik_pictures/right_upper_wall.png" alt="right_upper_wall">
+        <img id="pillows_draggable" src="resources/pictures/popik_pictures/pillows.png" alt="pillows">
+        <div id="pillows_droppable"></div>
+
+        <img id="upper_bed_draggable" src="resources/pictures/popik_pictures/upper_bed.png" alt="upper_bed">
+        <div id="upper_bed_droppable"></div>
+
+        <img id="left_wall_draggable" src="resources/pictures/popik_pictures/left_wall.png" alt="left_wall">
+        <div id="left_wall_droppable"></div>
+
+        <img id="upper_wall_draggable" src="resources/pictures/popik_pictures/upper_wall.png" alt="upper_wall">
+        <div id="upper_wall_droppable"></div>
+
+        <img id="missing_wall_draggable" src="resources/pictures/popik_pictures/missing_wall.png" alt="missing_wall">
+        <div id="missing_wall_droppable"></div>
+
+        <img id="right_wall_draggable" src="resources/pictures/popik_pictures/right_wall.png" alt="right_wall">
+        <div id="right_wall_droppable"></div>
+
+        <img id="right_upper_wall_draggable" src="resources/pictures/popik_pictures/right_upper_wall.png" alt="right_upper_wall">
+        <div id="right_upper_wall_droppable"></div>
 
     </div>
 </section>

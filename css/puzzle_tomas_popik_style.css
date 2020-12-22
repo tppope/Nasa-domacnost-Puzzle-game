@@ -5,95 +5,142 @@ div#puzzle_space {
     margin-left: auto;
     margin-right: auto;
     border: black solid 3px;
-    margin-bottom: 15vw;
+    margin-bottom: 70vw;
+    margin-top: 5px;
 }
 
 div#puzzle_space *{
     position: absolute;
 }
-
-.floor {
-    width: 100%;
+div#puzzle_space div{
+    z-index: -1;
+}
+div#puzzle_space img{
+    z-index: 0;
 }
 img#floor_draggable {
-    bottom: 0;
+    top: 70%;
     left: 0;
-}
-.night_table {
-    width: 17.8%;
+    width: 100%;
 }
 img#night_table_draggable {
     top: 54%;
     left: 0;
-}
-.bed{
-    width: 57.2%;
+    width: 17.8%;
 }
 img#bed_draggable{
     top: 60.4%;
     left: 12.8%;
-}
-.pillows{
-    width: 28%;
+    width: 57.2%;
 }
 img#pillows_draggable{
     top: 53%;
     left: 15.3%;
-}
-.upper_bed{
-    width: 32.8%;
+    width: 28%;
 }
 img#upper_bed_draggable{
     top: 37.2%;
     left: 8.5%;
-}
-.upper_wall {
-    width: 79.8%;
+    width: 32.8%;
 }
 img#upper_wall_draggable {
     top: 0;
-    right: 0;
-}
-.left_wall {
-    width: 50%;
+    left: 20.2%;
+    width: 79.8%;
 }
 img#left_wall_draggable {
     top: 0;
     left: 0;
+    width: 50%;
 }
-.missing_wall {
+
+img#missing_wall_draggable {
+    top: 17.2%;
+    left: 46.5%;
     width: 5.65%;
 }
-img#missing_wall_draggable {
-    left: 46.5%;
-    top: 17.2%;
-}
-.right_wall {
+img#right_wall_draggable{
+    top: 43%;
+    left: 52%;
     width: 48%;
 }
-img#right_wall_draggable{
-    right: 0;
-    top: 43%;
-}
-.right_upper_wall {
-    width: 48.5%;
-}
 img#right_upper_wall_draggable{
-    right: 0;
     top: 2.5%;
+    left: 51.5%;
+    width: 48.5%;
 }
 
 div#floor_droppable {
-    border: black solid 3px;
-    bottom: 0;
-    left: 0;
-    height: 30%;
-    z-index: -1;
+    top: 66.5%;
+    left: -3%;
+    height: 38%;
+    width: 106%;
 }
 div#night_table_droppable {
-    border: black solid 3px;
-    bottom: 10%;
-    left: 0;
-    height: 30%;
-    z-index: -1;
+    top: 50.5%;
+    left: -3.5%;
+    height: 43%;
+    width: 25%;
+}
+div#bed_droppable {
+    top: 56%;
+    left: 9.5%;
+    height: 46%;
+    width: 63%;
+}
+div#pillows_droppable {
+    top: 49%;
+    left: 12%;
+    height: 21.5%;
+    width: 34%;
+}
+div#upper_bed_droppable {
+    top: 34%;
+    left: 6%;
+    height: 37%;
+    width: 38%;
+}
+div#left_wall_droppable {
+    top: -3%;
+    left: -3%;
+    height: 68%;
+    width: 56%;
+}
+div#upper_wall_droppable {
+    top: -4%;
+    left: 17%;
+    height: 29%;
+    width: 86%;
+}
+div#missing_wall_droppable {
+    left: 44.3%;
+    top: 13.5%;
+    height: 54%;
+    width: 10%;
+}
+div#right_wall_droppable {
+    left: 49%;
+    top: 40%;
+    height: 42%;
+    width: 54%;
+}
+div#right_upper_wall_droppable {
+    left: 49%;
+    top: -1%;
+    height: 60%;
+    width: 53.5%;
+}
+h3{
+    margin-left: auto;
+    margin-right: auto;
+}
+.modal-body{
+    text-align: center;
+}
+#start_button {
+    margin-left: 27.5vw;
+}
+
+#display{
+    margin-left: 20%;
 }
