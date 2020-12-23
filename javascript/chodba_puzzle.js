@@ -168,7 +168,9 @@ function checkEndGame() {
 
 
 function endGame() {
-
+    clearInterval(timerInterval);
+    showModal();
+    reset();
 }
 
 
@@ -198,6 +200,7 @@ function runDemo() {
 
 
 function play() {
+    startTimeCounting();
     placedCount = 0;
     transitionSetup(turnOn = 0);
     clearTimers();
@@ -211,3 +214,54 @@ $(document).ready(function(){
     
     placeInside();
 });
+
+
+function showModal() {
+    $(".modal-body").html('Puzzle "chodba" ste zložili v čase ' + stringifyTime(elapsedTime));
+    $('#exampleModalCenter').modal({
+        keyboard: false
+    });
+}
+
+
+
+
+
+let
+    startTime,
+    elapsedTime = 0,
+    timerInterval;
+
+function stringifyTime(time) {
+    let diffInHrs = time / 3600000;
+    let hh = Math.floor(diffInHrs);
+
+    let diffInMin = (diffInHrs - hh) * 60;
+    let mm = Math.floor(diffInMin);
+
+    let diffInSec = (diffInMin - mm) * 60;
+    let ss = Math.floor(diffInSec);
+
+    let diffInMs = (diffInSec - ss) * 100;
+    let ms = Math.floor(diffInMs);
+
+    let formattedMM = mm.toString().padStart(2, "0");
+    let formattedSS = ss.toString().padStart(2, "0");
+    let formattedMS = ms.toString().padStart(2, "0");
+
+    return `${formattedMM}:${formattedSS}:${formattedMS}`;
+}
+
+function startTimeCounting() {
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(function printTime() {
+        elapsedTime = Date.now() - startTime;
+        $("#displayTime").html( stringifyTime(elapsedTime) );
+    }, 10);
+}
+
+function reset() {
+    clearInterval(timerInterval);
+    $("#displayTime").html("00:00:00");
+    elapsedTime = 0;
+}
