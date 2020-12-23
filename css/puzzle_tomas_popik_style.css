@@ -1,4 +1,4 @@
-div#puzzle_space {
+div#puzzle_space{
     position: relative;
     height: 30vw;
     width: 45%;
@@ -7,21 +7,21 @@ div#puzzle_space {
     border: black solid 3px;
     margin-bottom: 20vw;
 }
-#interfacePuzzle {
+#interfacePuzzle{
     position: relative;
     height: 45px;
     width: 100%;
 }
-@media (max-width: 768px) {
-    div#puzzle_space {
+@media (max-width: 768px){
+    div#puzzle_space{
         height: 60vw;
         width: 90%;
         margin-bottom: 108vw;
     }
-    #buttons {
+    #buttons{
         left: 5vw !important;
     }
-    #display {
+    #display{
         right: 5vw !important;
     }
 }
@@ -34,12 +34,12 @@ div#puzzle_space div{
 div#puzzle_space img{
     z-index: 0;
 }
-img#floor_draggable {
+img#floor_draggable{
     top: 70%;
     left: 0;
     width: 100%;
 }
-img#night_table_draggable {
+img#night_table_draggable{
     top: 54%;
     left: 0;
     width: 17.8%;
@@ -59,17 +59,17 @@ img#upper_bed_draggable{
     left: 8.5%;
     width: 32.8%;
 }
-img#left_wall_draggable {
+img#left_wall_draggable{
     top: 0;
     left: 0;
     width: 50%;
 }
-img#upper_wall_draggable {
+img#upper_wall_draggable{
     top: 0;
     left: 20.2%;
     width: 79.8%;
 }
-img#missing_wall_draggable {
+img#missing_wall_draggable{
     top: 17.2%;
     left: 46.5%;
     width: 5.65%;
@@ -85,61 +85,61 @@ img#right_upper_wall_draggable{
     width: 48.5%;
 }
 
-div#floor_droppable {
+div#floor_droppable{
     top: 66.5%;
     left: -3%;
     height: 38%;
     width: 106%;
 }
-div#night_table_droppable {
+div#night_table_droppable{
     top: 50.5%;
     left: -3.5%;
     height: 43%;
     width: 25%;
 }
-div#bed_droppable {
+div#bed_droppable{
     top: 56%;
     left: 9.5%;
     height: 46%;
     width: 63%;
 }
-div#pillows_droppable {
+div#pillows_droppable{
     top: 49%;
     left: 12%;
     height: 21.5%;
     width: 34%;
 }
-div#upper_bed_droppable {
+div#upper_bed_droppable{
     top: 34%;
     left: 6%;
     height: 37%;
     width: 38%;
 }
-div#left_wall_droppable {
+div#left_wall_droppable{
     top: -3%;
     left: -3%;
     height: 68%;
     width: 56%;
 }
-div#upper_wall_droppable {
+div#upper_wall_droppable{
     top: -4%;
     left: 17%;
     height: 29%;
     width: 86%;
 }
-div#missing_wall_droppable {
+div#missing_wall_droppable{
     left: 44.3%;
     top: 13.5%;
     height: 54%;
     width: 10%;
 }
-div#right_wall_droppable {
+div#right_wall_droppable{
     left: 49%;
     top: 40%;
     height: 42%;
     width: 54%;
 }
-div#right_upper_wall_droppable {
+div#right_upper_wall_droppable{
     left: 49%;
     top: -1%;
     height: 60%;
@@ -152,12 +152,12 @@ h3{
 .modal-body{
     text-align: center;
 }
-#buttons {
+#buttons{
     position: absolute;
     top: 0;
     left: 27.5vw;
 }
-#demo_button {
+#demo_button{
     margin-left: 5px;
 }
 #display{

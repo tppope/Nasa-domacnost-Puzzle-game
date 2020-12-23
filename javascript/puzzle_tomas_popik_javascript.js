@@ -12,7 +12,6 @@ let right_upper_wall_right_place = ["2.5%", "51.5%"];
 let right_places = [floor_right_place,night_table_right_place,bed_right_place,pillows_right_place,upper_bed_right_place,
     left_wall_right_place, upper_wall_right_place, missing_wall_right_place, right_wall_right_place,right_upper_wall_right_place];
 
-
 let floor_wrong_place = ["120%", "-60%"];
 let night_table_wrong_place = ["10%", "-50%"];
 let bed_wrong_place = ["127%", "100%"];
@@ -41,19 +40,23 @@ let right_upper_wall_wrong_place_mobile = ["200%", "-3%"];
 let wrong_places_mobile = [floor_wrong_place_mobile,night_table_wrong_place_mobile,bed_wrong_place_mobile,pillows_wrong_place_mobile,upper_bed_wrong_place_mobile,
     left_wall_wrong_place_mobile,upper_wall_wrong_place_mobile,missing_wall_wrong_place_mobile,right_wall_wrong_place_mobile,right_upper_wall_wrong_place_mobile];
 
-
 let mediaQuery = window.matchMedia("(max-width: 768px)");
 let mediaQueryChange = false;
-
 mediaQuery.addListener(mediaQueryPuzzle);
 
+function settingMediaQueryChangeTrue(){
+    mediaQueryChange = true;
+}
+function settingMediaQueryChangeFalse(){
+    mediaQueryChange = false;
+}
 
 function mediaQueryPuzzle (){
     setTimeout(settingMediaQueryChangeTrue,70);
     setTimeout(setWrongPlace,80);
 }
 
-$(window).on("load",function () {
+$(window).on("load",function (){
     cancelDragAndDrop();
 });
 
@@ -73,15 +76,14 @@ function dragAndDrop(){
 function cancelDragAndDrop(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index) {
+    Array.from(images).forEach(function (element, index){
         element.draggable = false;
         if ($( element ).hasClass("ui-draggable"))
             $( element ).draggable( "option", "disabled", true );
-
     })
 }
 
-function setDragAndDrop(name,right_place) {
+function setDragAndDrop(name,right_place){
     let draggableImage = document.getElementById(name+"_draggable");
     draggableImage.draggable = true;
     $( draggableImage ).draggable({
@@ -98,10 +100,10 @@ function setDragAndDrop(name,right_place) {
     $( "#"+name+"_droppable" ).droppable({
         accept: "#"+name+"_draggable",
         tolerance: "fit",
-        drop: function( event, ui ) {
+        drop: function( event, ui ){
             draggableImage.style.transition = "all 1s";
             changePosition(draggableImage,right_place);
-            $( draggableImage ).draggable( "option", "disabled", true );
+            $( draggableImage ).draggable( "option", "disabled", true);
             draggableImage.draggable = false;
             if(checkAllDropped()){
                 endGame();
@@ -124,20 +126,18 @@ function startPlace(){
     setTimeout(setWrongPlace,40);
 }
 
-function settingMediaQueryChangeTrue() {
-    mediaQueryChange = true;
-}
-function settingMediaQueryChangeFalse() {
-    mediaQueryChange = false;
-}
-
 function play(){
     change_start_button();
     startPlace();
     dragAndDrop();
 }
 
-function change_start_button() {
+function changePosition(element,place){
+    element.style.top = place[0];
+    element.style.left = place[1];
+}
+
+function change_start_button(){
     let start_button = document.getElementById("start_button");
     if ($(start_button).hasClass("btn-outline-success")){
         start();
@@ -145,13 +145,13 @@ function change_start_button() {
         start_button.classList.add("btn-outline-danger");
         start_button.innerText = "Reset";
     }
-    else {
+    else{
         reset();
         start();
     }
 }
 
-function change_reset_button() {
+function change_reset_button(){
     let start_button = document.getElementById("start_button");
     if ($(start_button).hasClass("btn-outline-danger")){
         start_button.classList.remove("btn-outline-danger");
@@ -161,29 +161,20 @@ function change_reset_button() {
     }
 }
 
-function changePosition(element,place){
-    element.style.top = place[0];
-    element.style.left = place[1];
-}
-
-function setWrongPlace() {
+function setWrongPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index) {
-        if(mediaQuery.matches)
-        {
-            if(mediaQueryChange)
-            {
+    Array.from(images).forEach(function (element, index){
+        if(mediaQuery.matches){
+            if(mediaQueryChange){
                 if(element.draggable === true)
                     changePosition(element,wrong_places_mobile[index]);
             }
             else
                 changePosition(element,wrong_places_mobile[index]);
         }
-
         else{
-            if(mediaQueryChange)
-            {
+            if(mediaQueryChange){
                 if(element.draggable === true)
                     changePosition(element,wrong_places[index]);
             }
@@ -193,27 +184,27 @@ function setWrongPlace() {
     })
 }
 
-function setRightPlace() {
+function setRightPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index) {
+    Array.from(images).forEach(function (element, index){
         changePosition(element,right_places[index]);
     })
 }
 
-function turnOffTransition() {
+function turnOffTransition(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index) {
+    Array.from(images).forEach(function (element, index){
         element.style.transition = "all 0s";
         element.style.transitionDelay = "0s";
     })
 }
 
-function turnOnTransition() {
+function turnOnTransition(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index) {
+    Array.from(images).forEach(function (element, index){
         element.style.transition = "all 1s";
         element.style.transitionDelay = index + "s";
     })
@@ -223,7 +214,7 @@ function checkAllDropped(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
     let draggable = true;
-    Array.from(images).forEach(function (element, index) {
+    Array.from(images).forEach(function (element, index){
         if (element.draggable === true)
             draggable = false;
     })
@@ -244,7 +235,7 @@ function showModal(){
 
 //STOPKY
 
-function timeToString(time) {
+function timeToString(time){
     let diffInHrs = time / 3600000;
     let hh = Math.floor(diffInHrs);
 
@@ -265,34 +256,30 @@ function timeToString(time) {
 }
 
 // Declare variables to use in our functions below
-
 let startTime;
 let elapsedTime = 0;
 let timerInterval;
 
 // Create function to modify innerHTML
-
-function print(txt) {
+function print(txt){
     document.getElementById("display").innerHTML = txt;
 }
 
 // Create "start", "pause" and "reset" functions
-
-function start() {
+function start(){
     startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(function printTime() {
+    timerInterval = setInterval(function printTime(){
         elapsedTime = Date.now() - startTime;
         print(timeToString(elapsedTime));
     }, 10);
 }
 
-function pause() {
+function pause(){
     clearInterval(timerInterval);
 }
 
-function reset() {
+function reset(){
     clearInterval(timerInterval);
     print("00:00:00");
     elapsedTime = 0;
 }
-
