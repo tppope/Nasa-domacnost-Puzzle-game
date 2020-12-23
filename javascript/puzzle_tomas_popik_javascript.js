@@ -71,7 +71,7 @@ function dragAndDrop(){
     setDragAndDrop("missing_wall",missing_wall_right_place);
     setDragAndDrop("right_wall",right_wall_right_place);
     setDragAndDrop("right_upper_wall",right_upper_wall_right_place);
-};
+}
 
 function cancelDragAndDrop(){
     let puzzle = document.getElementById("puzzle_space");
