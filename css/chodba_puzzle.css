@@ -1,0 +1,12 @@
+#chodba_puzzle {
+    position: relative;
+    height: 693px;
+    width: 837px;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 3px;
+}
+
+.puzzle-cast {
+    position:absolute;
+}
