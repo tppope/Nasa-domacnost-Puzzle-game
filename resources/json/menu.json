@@ -1,0 +1,50 @@
+{
+  "menu":
+  [
+    {
+      "src": "index.html",
+      "title": "Domov",
+      "sub":  null
+    },
+    {
+      "src": "#",
+      "title": "Hry",
+      "sub":
+	[
+	  {
+		"src": "#",
+		"title": "Puzzle",
+		"sub":
+		   [
+    			{
+   			   "src": "puzzle_katarina_stasova.html",
+  			    "title": "Katka",
+				"sub": null
+  			},
+    			{
+   			   "src": "puzzle_tomas_popik.html",
+  			    "title": "Tomas",
+				"sub": null
+  			},
+    			{
+   			   "src": "filip",
+  			    "title": "Filip",
+				"sub": null
+  			},
+    			{
+   			   "src": "juraj",
+  			    "title": "Juraj",
+				"sub": null
+  			}
+		   ]
+	  }
+		
+	]
+    },
+    {
+      "src": "kalendar",
+      "title": "Kalendár",
+      "sub": null
+    }
+  ]
+}
