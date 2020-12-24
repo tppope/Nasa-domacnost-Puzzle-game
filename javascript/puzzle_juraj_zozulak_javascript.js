@@ -25,7 +25,7 @@ let obrazky = {
     },
     "dvere": {
         insideXY: [452, 262],
-		outsideXY: [-350, 200],
+		outsideXY: [850, 500],
         width: 80,
         height: 180
     },
@@ -55,17 +55,27 @@ let
 
     startTime,
     elapsedTime = 0,
-    timerInterval;
+    timerInterval; 
 
 
 function createPuzzlePieces() {
+    let koeficientPosunu = 1;
+    let sirkaObrazovky = window.innerWidth;
+    if (sirkaObrazovky >= 1200) koeficientPosunu = 1;
+    else if (sirkaObrazovky >= 1050) koeficientPosunu = 0.6;
+    else if (sirkaObrazovky >= 992) koeficientPosunu = 0.5;
+    else if (sirkaObrazovky >= 768) koeficientPosunu = 0.45;
+    else if (sirkaObrazovky >= 600) koeficientPosunu = 0.3;
+    else if (sirkaObrazovky < 600) koeficientPosunu = 0.2;
+
+
     let puzzleDiv = $("#chodba_puzzle");
     for (let nazov in obrazky) {
         let dynamicStyle = `
-            left:` + (obrazky[nazov].insideXY[0] - 10) + `px;
-            top:` + (obrazky[nazov].insideXY[1] - 10) + `px;
-            width:` + (obrazky[nazov].width + 20) + `px;
-            height:` + (obrazky[nazov].height + 20) + `px;
+            left:` + (obrazky[nazov].insideXY[0] - 10 * koeficientPosunu) + `px;
+            top:` + (obrazky[nazov].insideXY[1] - 10 * koeficientPosunu) + `px;
+            width:` + (obrazky[nazov].width + 20 * koeficientPosunu) + `px;
+            height:` + (obrazky[nazov].height + 20 * koeficientPosunu) + `px;
         `;
 
         puzzleDiv.append(
