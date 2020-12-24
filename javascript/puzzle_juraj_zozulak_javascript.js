@@ -51,8 +51,11 @@ let obrazky = {
 
 let
     timeoutTimers = [],
-    placedCount = 0;
+    placedCount = 0,
 
+    startTime,
+    elapsedTime = 0,
+    timerInterval;
 
 
 function createPuzzlePieces() {
@@ -170,7 +173,7 @@ function checkEndGame() {
 function endGame() {
     clearInterval(timerInterval);
     showModal();
-    reset();
+    resetTimeCounting();
 }
 
 
@@ -184,6 +187,7 @@ function clearTimers() {
 
 
 function runDemo() {
+    change_reset_button();
     transitionSetup(turnOn = 0);
     clearTimers();
 
@@ -200,6 +204,7 @@ function runDemo() {
 
 
 function play() {
+    change_start_button();
     startTimeCounting();
     placedCount = 0;
     transitionSetup(turnOn = 0);
@@ -225,12 +230,6 @@ function showModal() {
 
 
 
-
-
-let
-    startTime,
-    elapsedTime = 0,
-    timerInterval;
 
 function stringifyTime(time) {
     let diffInHrs = time / 3600000;
@@ -260,8 +259,34 @@ function startTimeCounting() {
     }, 10);
 }
 
-function reset() {
+function resetTimeCounting() {
     clearInterval(timerInterval);
     $("#displayTime").html("00:00:00");
     elapsedTime = 0;
+}
+
+
+
+function change_start_button() {
+    let start_button = document.getElementById("start_button");
+    if ($(start_button).hasClass("btn-outline-success")){
+        startTimeCounting();
+        start_button.classList.remove("btn-outline-success");
+        start_button.classList.add("btn-outline-danger");
+        start_button.innerText = "Reset";
+    }
+    else{
+        resetTimeCounting();
+        startTimeCounting();
+    }
+}
+
+function change_reset_button() {
+    let start_button = document.getElementById("start_button");
+    if ($(start_button).hasClass("btn-outline-danger")){
+        start_button.classList.remove("btn-outline-danger");
+        start_button.classList.add("btn-outline-success");
+        start_button.innerText = "Start";
+        resetTimeCounting();
+    }
 }
