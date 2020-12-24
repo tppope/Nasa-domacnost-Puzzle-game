@@ -66,7 +66,7 @@ function createPuzzlePieces() {
         `;
 
         puzzleDiv.append(
-            '<img src="casti-puzzle/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '">' + 
+            '<img src="resources/pictures/zozulak_pictures/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '">' + 
             '<div id="piece-' + nazov + '-container" style="' + dynamicStyle + '" class="puzzle-cast-container"></div>'
         );
     }
