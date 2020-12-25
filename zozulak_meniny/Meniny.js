@@ -19,10 +19,6 @@ class Meniny extends HTMLElement {
         this.setupElementBody();
     }
 
-	static get observedAttributes() {
-		return [];
-	}
-
 
     setMultipleAttrs(element, attrs) {
         for (let a in attrs) element.setAttribute(a, attrs[a]);
@@ -100,12 +96,40 @@ class Meniny extends HTMLElement {
         }
 
         this.virtualDOM.resultList = [ this.getResultByDatum(datumSearch) ];
-        console.log(this.virtualDOM.resultList);
         this.showResults.bind(this)();
     }
 
+
     getSearchString() {
-        console.log(this.value);
+        let normalizedSubstring = this.virtualDOM.searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        let foundDates = [];
+
+        let br = document.createElement("br");
+
+        let skratky = ["SKd", "SK", "CZ", "HU", "PL", "AT", "SKdni", "SKsviatky", "CZsviatky"];
+
+
+        for (let datum in MENINY_DATASET_NORMALIZED) {
+            let found = false;
+            for (let skratka of skratky) {
+                let str = MENINY_DATASET_NORMALIZED[datum][skratka];
+                if (str != undefined) {
+                    found = ( str.search(normalizedSubstring) != -1 );
+                }
+
+                if (found) {
+                    foundDates.push(
+                        this.getResultByDatum( MENINY_DATASET[datum].den ),
+                        br.cloneNode()
+                    );
+                    break;
+                }
+            }
+        }
+
+        this.virtualDOM.resultList = foundDates;
+        this.showResults.bind(this)();
     }
 
 
