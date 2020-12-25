@@ -25,7 +25,7 @@ let obrazky = {
     },
     "dvere": {
         insideXY: [452, 262],
-		outsideXY: [-350, 200],
+		outsideXY: [850, 500],
         width: 80,
         height: 180
     },
@@ -51,22 +51,35 @@ let obrazky = {
 
 let
     timeoutTimers = [],
-    placedCount = 0;
+    placedCount = 0,
 
+    startTime,
+    elapsedTime = 0,
+    timerInterval; 
 
 
 function createPuzzlePieces() {
+    let koeficientPosunu = 1;
+    let sirkaObrazovky = window.innerWidth;
+    if (sirkaObrazovky >= 1200) koeficientPosunu = 1;
+    else if (sirkaObrazovky >= 1050) koeficientPosunu = 0.6;
+    else if (sirkaObrazovky >= 992) koeficientPosunu = 0.5;
+    else if (sirkaObrazovky >= 768) koeficientPosunu = 0.45;
+    else if (sirkaObrazovky >= 600) koeficientPosunu = 0.3;
+    else if (sirkaObrazovky < 600) koeficientPosunu = 0.2;
+
+
     let puzzleDiv = $("#chodba_puzzle");
     for (let nazov in obrazky) {
         let dynamicStyle = `
-            left:` + (obrazky[nazov].insideXY[0] - 10) + `px;
-            top:` + (obrazky[nazov].insideXY[1] - 10) + `px;
-            width:` + (obrazky[nazov].width + 20) + `px;
-            height:` + (obrazky[nazov].height + 20) + `px;
+            left:` + (obrazky[nazov].insideXY[0] - 10 * koeficientPosunu) + `px;
+            top:` + (obrazky[nazov].insideXY[1] - 10 * koeficientPosunu) + `px;
+            width:` + (obrazky[nazov].width + 20 * koeficientPosunu) + `px;
+            height:` + (obrazky[nazov].height + 20 * koeficientPosunu) + `px;
         `;
 
         puzzleDiv.append(
-            '<img src="casti-puzzle/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '">' + 
+            '<img src="resources/pictures/zozulak_pictures/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '">' + 
             '<div id="piece-' + nazov + '-container" style="' + dynamicStyle + '" class="puzzle-cast-container"></div>'
         );
     }
@@ -170,7 +183,7 @@ function checkEndGame() {
 function endGame() {
     clearInterval(timerInterval);
     showModal();
-    reset();
+    resetTimeCounting();
 }
 
 
@@ -184,6 +197,7 @@ function clearTimers() {
 
 
 function runDemo() {
+    change_reset_button();
     transitionSetup(turnOn = 0);
     clearTimers();
 
@@ -200,6 +214,7 @@ function runDemo() {
 
 
 function play() {
+    change_start_button();
     startTimeCounting();
     placedCount = 0;
     transitionSetup(turnOn = 0);
@@ -225,12 +240,6 @@ function showModal() {
 
 
 
-
-
-let
-    startTime,
-    elapsedTime = 0,
-    timerInterval;
 
 function stringifyTime(time) {
     let diffInHrs = time / 3600000;
@@ -260,8 +269,34 @@ function startTimeCounting() {
     }, 10);
 }
 
-function reset() {
+function resetTimeCounting() {
     clearInterval(timerInterval);
     $("#displayTime").html("00:00:00");
     elapsedTime = 0;
+}
+
+
+
+function change_start_button() {
+    let start_button = document.getElementById("start_button");
+    if ($(start_button).hasClass("btn-outline-success")){
+        startTimeCounting();
+        start_button.classList.remove("btn-outline-success");
+        start_button.classList.add("btn-outline-danger");
+        start_button.innerText = "Reset";
+    }
+    else{
+        resetTimeCounting();
+        startTimeCounting();
+    }
+}
+
+function change_reset_button() {
+    let start_button = document.getElementById("start_button");
+    if ($(start_button).hasClass("btn-outline-danger")){
+        start_button.classList.remove("btn-outline-danger");
+        start_button.classList.add("btn-outline-success");
+        start_button.innerText = "Start";
+        resetTimeCounting();
+    }
 }

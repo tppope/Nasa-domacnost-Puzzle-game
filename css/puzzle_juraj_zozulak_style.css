@@ -1,0 +1,54 @@
+#chodba_puzzle {
+    position: relative;
+    height: 693px;
+    width: 837px;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 3px;
+}
+
+.puzzle-cast, .puzzle-cast-container {
+    position:absolute;
+}
+
+
+ /* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+    #chodba_puzzle {
+        transform:scale(0.2);
+    }
+ }
+
+ /* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+    #chodba_puzzle {
+        transform:scale(0.3);
+    }
+ }
+ 
+ /* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+    #chodba_puzzle {
+        transform:scale(0.45);
+    }
+ }
+ 
+ /* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+    #chodba_puzzle {
+        transform:scale(0.5);
+    }
+ }
+
+@media only screen and (min-width: 1050px) {
+    #chodba_puzzle {
+        transform:scale(0.6);
+    }
+ }
+ 
+ /* Extra large devices (large laptops and desktops, 1200px and up) */
+ @media only screen and (min-width: 1200px) {
+    #chodba_puzzle {
+        transform:scale(1);
+    }
+ } 

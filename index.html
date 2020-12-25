@@ -13,6 +13,11 @@
     <script src="javascript/nasa_domacnost_javascript.js" defer></script>
     <script src="javascript/components/Menu.js"></script>
 
+
+    <script src="zozulak_meniny/meniny-dataset.js"></script>
+    <script src="zozulak_meniny/meniny-dataset-normalized.js"></script>
+    <script src="zozulak_meniny/Meniny.js"></script>
+
 </head>
 <body>
 <header>
@@ -34,10 +39,13 @@
             </div>
         </div>
     </nav>
-
-
 </header>
 <section>
+    <br/><br/><br/>
+    <meniny-component></meniny-component>
+    <br/><br/><br/>
+
+
     <div id="title_picture">
         <img id="grass" src="resources/pictures/title_pictures/grass.png" alt="title_piece_1">
         <img id="left_down" src="resources/pictures/title_pictures/left_down.png" alt="title_piece_2">
@@ -47,7 +55,7 @@
         <img id="right" src="resources/pictures/title_pictures/right.png" alt="title_piece_6">
     </div>
 
-    <article id="choose_puzzle">
+    <article class="article_puzzle">
         <header>
             <h2>Postavte si naše miestnosti</h2>
         </header>
@@ -69,13 +77,13 @@
 
         <div class="puzzleImg">
             <div>Postavte si miestnosť od Juraja</div>
-            <a href="puzzle_juraj_zozulak.html"><img class="square" src="base.jpg" alt="base"></a>
+            <a href="puzzle_juraj_zozulak.html"><img class="square" src="resources/pictures/zozulak_pictures/base.jpg" alt="zozulak_juraj_room"></a>
         </div>
     </article>
 
 </section>
 <footer>
-    <span id="designedBy">Designed by .............</span>
+    <span id="designedBy">Skúškové zadanie - WEBTECH1 Fakulta elektrotechniky a informatiky STU v Bratislave</span>
 </footer>
 </body>
 </html>
