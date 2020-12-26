@@ -1,0 +1,50 @@
+{
+  "menu":
+  [
+    {
+      "src": "index.html",
+      "title": "Domov",
+      "sub":  null
+    },
+    {
+      "src": "#",
+      "title": "Hry",
+      "sub":
+	[
+	  {
+		"src": "#",
+		"title": "Puzzle",
+		"sub":
+		   [
+    			{
+   			   "src": "puzzle_katarina_stasova.html",
+  			    "title": "Katkina miestnosť",
+				"sub": null
+  			},
+    			{
+   			   "src": "puzzle_tomas_popik.html",
+  			    "title": "Tomášova miestnosť",
+				"sub": null
+  			},
+    			{
+   			   "src": "filip",
+  			    "title": "Filipova miestnosť",
+				"sub": null
+  			},
+    			{
+   			   "src": "puzzle_juraj_zozulak.html",
+  			    "title": "Jurajova miestnosť",
+				"sub": null
+  			}
+		   ]
+	  }
+		
+	]
+    },
+    {
+      "src": "about_us.html",
+      "title": "O nás",
+      "sub": null
+    }
+  ]
+}

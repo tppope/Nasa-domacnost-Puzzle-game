@@ -1,41 +1,44 @@
-let right_places = {
-    floor: ["70%", "0"],
-    night_table: ["54%", "0"],
-    bed: ["60.4%", "12.8%"],
-    pillows: ["53%", "15.3%"],
-    upper_bed: ["37.2%", "8.5%"],
-    left_wall: ["0", "0"],
-    upper_wall: ["0", "20.2%"],
-    missing_wall: ["17.2%", "46.5%"],
-    right_wall: ["43%", "52%"],
-    right_upper_wall: ["2.5%", "51.5%"],
-};
+let right_places = [
+    ["76.5%", "26.8%"],
+    ["0%", "0"],
+    ["66.7%", "43.9%"],
+    ["7.1%", "22.9%"],
+    ["70.7%", "0%"],
+    ["0%", "76.6%"],
+    ["57.8%", "0"],
+    ["65.5%", "71%"],
+    ["0", "18.3%"],
+    ["15.5%", "72.4%"],
+    ["19%", "32.2%"]
+];
 
-let wrong_places = {
-    floor: ["120%", "-60%"],
-    night_table: ["10%", "-50%"],
-    bed: ["127%", "100%"],
-    pillows: ["50%", "-55%"],
-    upper_bed: ["70%", "110%"],
-    left_wall: ["3%", "106%"],
-    upper_wall: ["105%", "40%"],
-    missing_wall: ["5%", "-20%"],
-    right_wall: ["127%", "45%"],
-    right_upper_wall: ["65%", "-55%"],
-};
+let wrong_places = [
+    ["120%", "-35%"],
+    ["0%", "110%"],
+    ["0%", "-25%"],
+    ["40%", "-60%"],
+    ["0%", "140%"],
+    ["50%", "135%"],
+    ["120%", "40%"],
+    ["0%", "-60%"],
+    ["107%", "40%"],
+    ["110%", "-55%"],
+    ["115%", "105%"]
+];
 
-let wrong_places_mobile = {
-    floor: ["170%", "0"],
-    night_table: ["145%", "10%"],
-    bed: ["127%", "48%"],
-    pillows: ["160%", "30%"],
-    upper_bed: ["253%", "10%"],
-    left_wall: ["203%", "50%"],
-    upper_wall: ["105%", "25%"],
-    missing_wall: ["140%", "-3%"],
-    right_wall: ["110%", "-4%"],
-    right_upper_wall: ["200%", "-3%"],
-};
+let wrong_places_mobile = [
+    ["247%", "30%"],
+    ["165%", "50%"],
+    ["105%", "-3%"],
+    ["103%", "48%"],
+    ["103%", "21%"],
+    ["180%", "80%"],
+    ["240%", "-5%"],
+    ["200%", "10%"],
+    ["273%", "41%"],
+    ["135%", "34%"],
+    ["135%", "-5%"]
+];
 
 let mediaQuery = window.matchMedia("(max-width: 768px)");
 let mediaQueryChange = false;
@@ -58,12 +61,19 @@ $(window).on("load",function (){
 });
 
 function dragAndDrop(){
-    let puzzle = document.getElementById("puzzle_space");
-    let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element){
-        setDragAndDrop(element,right_places[element.id]);
-    })
-}
+    setDragAndDrop("floor",right_places[0]);
+    setDragAndDrop("left_wall",right_places[1]);
+    setDragAndDrop("middle_table",right_places[2]);
+    setDragAndDrop("middle_wall",right_places[3]);
+    setDragAndDrop("next_to_sofa",right_places[4]);
+    setDragAndDrop("right_wall",right_places[5]);
+    setDragAndDrop("sofa",right_places[6]);
+    setDragAndDrop("under_tv",right_places[7]);
+    setDragAndDrop("upper_wall",right_places[8]);
+    setDragAndDrop("wardrobe",right_places[9]);
+    setDragAndDrop("window",right_places[10]);
+
+};
 
 function cancelDragAndDrop(){
     let puzzle = document.getElementById("puzzle_space");
@@ -75,8 +85,8 @@ function cancelDragAndDrop(){
     })
 }
 
-function setDragAndDrop(draggableImage,right_place){
-    console.log(typeof draggableImage.id);
+function setDragAndDrop(name,right_place){
+    let draggableImage = document.getElementById(name+"_draggable");
     draggableImage.draggable = true;
     $( draggableImage ).draggable({
         revert: "invalid",
@@ -89,8 +99,8 @@ function setDragAndDrop(draggableImage,right_place){
         }
     });
 
-    $( "#"+draggableImage.id+"_droppable" ).droppable({
-        accept: "#"+draggableImage.id,
+    $( "#"+name+"_droppable" ).droppable({
+        accept: "#"+name+"_draggable",
         tolerance: "fit",
         drop: function( event, ui ){
             draggableImage.style.transition = "all 1s";
@@ -106,22 +116,22 @@ function setDragAndDrop(draggableImage,right_place){
 
 function playDemo(){
     setTimeout(change_reset_button(),1);
-    setTimeout(cancelDragAndDrop(),20);
-    setTimeout(settingMediaQueryChangeFalse,40)
+    setTimeout(cancelDragAndDrop(),10);
     startPlace();
-    setTimeout(turnOnTransition,100);
-    setTimeout(setRightPlace,120);
+    setTimeout(turnOnTransition,50);
+    setTimeout(setRightPlace,60);
 }
 
 function startPlace(){
-    setTimeout(turnOffTransition,60);
-    setTimeout(setWrongPlace,80);
+    setTimeout(settingMediaQueryChangeFalse,20)
+    setTimeout(turnOffTransition,30);
+    setTimeout(setWrongPlace,40);
 }
 
 function play(){
     change_start_button();
-    dragAndDrop();
     startPlace();
+    dragAndDrop();
 }
 
 function changePosition(element,place){
@@ -132,14 +142,15 @@ function changePosition(element,place){
 function change_start_button(){
     let start_button = document.getElementById("start_button");
     if ($(start_button).hasClass("btn-outline-success")){
+        start();
         start_button.classList.remove("btn-outline-success");
         start_button.classList.add("btn-outline-danger");
         start_button.innerText = "Reset";
     }
-    else
+    else{
         reset();
-
-    start();
+        start();
+    }
 }
 
 function change_reset_button(){
@@ -156,23 +167,30 @@ function setWrongPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
-
-        if (mediaQueryChange){
-            if(element.draggable === false)
-                return;
+        if(mediaQuery.matches){
+            if(mediaQueryChange){
+                if(element.draggable === true)
+                    changePosition(element,wrong_places_mobile[index]);
+            }
+            else
+                changePosition(element,wrong_places_mobile[index]);
         }
-        if(mediaQuery.matches)
-            changePosition(element,wrong_places_mobile[element.id]);
-        else
-            changePosition(element,wrong_places[element.id]);
+        else{
+            if(mediaQueryChange){
+                if(element.draggable === true)
+                    changePosition(element,wrong_places[index]);
+            }
+            else
+                changePosition(element,wrong_places[index]);
+        }
     })
 }
 
 function setRightPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element){
-        changePosition(element,right_places[element.id]);
+    Array.from(images).forEach(function (element, index){
+        changePosition(element,right_places[index]);
     })
 }
 
@@ -198,7 +216,7 @@ function checkAllDropped(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
     let draggable = true;
-    Array.from(images).forEach(function (element){
+    Array.from(images).forEach(function (element, index){
         if (element.draggable === true)
             draggable = false;
     })

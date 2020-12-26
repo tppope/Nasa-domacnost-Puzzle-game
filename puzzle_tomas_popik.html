@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Miestnosť Tomáša</title>
+    <link rel="icon" type="image/png" href="resources/pictures/favicon/favicon_house.png">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/nasa_domacnost_style.css">
     <link rel="stylesheet" href="css/puzzle_tomas_popik_style.css">
@@ -14,6 +15,7 @@
     <script src="javascript/jQuery/jquery.ui.touch-punch.min.js"></script>
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
     <script src="javascript/puzzle_tomas_popik_javascript.js"></script>
+    <script src="javascript/components/Menu.js"></script>
 
 </head>
 <body>
@@ -21,9 +23,8 @@
     <h1>
         Tomášova miestnosť
     </h1>
-    <nav>
-        TU BUDE TROJUROVNOVE MENU
-    </nav>
+
+    <me-nu></me-nu>
 </header>
 <section>
     <!-- Modal -->
@@ -50,34 +51,34 @@
     </div>
 
     <div id="puzzle_space">
-        <img id="floor_draggable" src="resources/pictures/popik_pictures/floor.png" alt="floor">
+        <img id="floor" src="resources/pictures/popik_pictures/floor.png" name="floor" alt="floor">
         <div id="floor_droppable"></div>
 
-        <img id="night_table_draggable" src="resources/pictures/popik_pictures/night_table.png" alt="night_table">
+        <img id="night_table" src="resources/pictures/popik_pictures/night_table.png" alt="night_table">
         <div id="night_table_droppable"></div>
 
-        <img id="bed_draggable" src="resources/pictures/popik_pictures/bed.png" alt="bed">
+        <img id="bed" src="resources/pictures/popik_pictures/bed.png" alt="bed">
         <div id="bed_droppable"></div>
 
-        <img id="pillows_draggable" src="resources/pictures/popik_pictures/pillows.png" alt="pillows">
+        <img id="pillows" src="resources/pictures/popik_pictures/pillows.png" alt="pillows">
         <div id="pillows_droppable"></div>
 
-        <img id="upper_bed_draggable" src="resources/pictures/popik_pictures/upper_bed.png" alt="upper_bed">
+        <img id="upper_bed" src="resources/pictures/popik_pictures/upper_bed.png" alt="upper_bed">
         <div id="upper_bed_droppable"></div>
 
-        <img id="left_wall_draggable" src="resources/pictures/popik_pictures/left_wall.png" alt="left_wall">
+        <img id="left_wall" src="resources/pictures/popik_pictures/left_wall.png" alt="left_wall">
         <div id="left_wall_droppable"></div>
 
-        <img id="upper_wall_draggable" src="resources/pictures/popik_pictures/upper_wall.png" alt="upper_wall">
+        <img id="upper_wall" src="resources/pictures/popik_pictures/upper_wall.png" alt="upper_wall">
         <div id="upper_wall_droppable"></div>
 
-        <img id="missing_wall_draggable" src="resources/pictures/popik_pictures/missing_wall.png" alt="missing_wall">
+        <img id="missing_wall" src="resources/pictures/popik_pictures/missing_wall.png" alt="missing_wall">
         <div id="missing_wall_droppable"></div>
 
-        <img id="right_wall_draggable" src="resources/pictures/popik_pictures/right_wall.png" alt="right_wall">
+        <img id="right_wall" src="resources/pictures/popik_pictures/right_wall.png" alt="right_wall">
         <div id="right_wall_droppable"></div>
 
-        <img id="right_upper_wall_draggable" src="resources/pictures/popik_pictures/right_upper_wall.png" alt="right_upper_wall">
+        <img id="right_upper_wall" src="resources/pictures/popik_pictures/right_upper_wall.png" alt="right_upper_wall">
         <div id="right_upper_wall_droppable"></div>
 
     </div>
