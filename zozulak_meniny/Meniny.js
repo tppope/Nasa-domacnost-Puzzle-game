@@ -15,8 +15,7 @@ class Meniny extends HTMLElement {
 
         this.shadowRoot.innerHTML = this.setupInnerCSS(); // tadeto sa pridava len CSS kod, HTML kod sa dava ako appendChild
 
-
-        this.setupElementBody();
+        // v child elementoch sa vykona setup body, kvoli odlisnemu body pre kazdy z child elementov
     }
 
 
@@ -58,30 +57,6 @@ class Meniny extends HTMLElement {
                 width: 250px;
             }
         </style>`;
-    }
-
-    setupElementBody() {
-        this.setupDatumInput();
-        this.setupSearchInput();
-        this.setupCurrentDay();
-        
-        this.virtualDOM.resultListContainerDiv = document.createElement("div");
-
-
-        let br = document.createElement("br");
-
-        this.shadowRoot.append(
-            "Zadaj dátum: ",
-            this.virtualDOM.datumInput,
-            br.cloneNode(),
-            "Zadaj meno alebo jeho časť: ",
-            this.virtualDOM.searchInput,
-            br.cloneNode(), br.cloneNode(),
-            "--- DNEŠNÝ DEŇ ---", br.cloneNode(),
-            this.virtualDOM.currentDayResult, br.cloneNode(), br.cloneNode(),
-            "--- VÝSLEDKY VYHĽADÁVANIA ---", br.cloneNode(),
-            this.virtualDOM.resultListContainerDiv
-        );
     }
 
 
@@ -151,6 +126,35 @@ class Meniny extends HTMLElement {
         this.virtualDOM.currentDayResult = this.getResultByDatum(currentDatum);
     }
 
+    setupCurrentDayShort() {
+        let d = new Date();
+        let currentDatum = {
+            den: d.getDate(),
+            mesiac: d.getMonth() + 1
+        };
+        
+        let md = MENINY_DATASET[ currentDatum.mesiac + "-" + currentDatum.den ];
+
+        let br = document.createElement("br");
+
+
+        let short = document.createElement("div");
+
+        short.append(
+            "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + md.SK
+        );
+
+        if (md.SKsviatky != undefined) {
+            short.append(
+                br.cloneNode(),
+                "Dnešný sviatok je " + md.SKsviatky
+            );
+        }
+
+
+        this.virtualDOM.currentDayResult = short;
+    }
+
 
     getResultByDatum(datum) {
         let br = document.createElement("br");
@@ -217,4 +221,56 @@ class Meniny extends HTMLElement {
 };
 
 
-customElements.define("meniny-component", Meniny);
+
+class MeninyDnesne extends Meniny {
+    constructor() {
+        super();
+        this.setupElementBody();
+    }
+
+    setupElementBody() {
+        this.setupCurrentDayShort();
+
+        let br = document.createElement("br");
+
+        this.shadowRoot.append(
+            "--- DNEŠNÝ DEŇ ---", br.cloneNode(),
+            this.virtualDOM.currentDayResult
+        );
+    }
+}
+
+class MeninyPlne extends Meniny {
+    constructor() {
+        super();
+        this.setupElementBody();
+    }
+
+    setupElementBody() {
+        this.setupDatumInput();
+        this.setupSearchInput();
+        this.setupCurrentDay();
+        
+        this.virtualDOM.resultListContainerDiv = document.createElement("div");
+
+
+        let br = document.createElement("br");
+
+        this.shadowRoot.append(
+            "Zadaj dátum: ",
+            this.virtualDOM.datumInput,
+            br.cloneNode(),
+            "Zadaj meno alebo jeho časť: ",
+            this.virtualDOM.searchInput,
+            br.cloneNode(), br.cloneNode(),
+            "--- DNEŠNÝ DEŇ ---", br.cloneNode(),
+            this.virtualDOM.currentDayResult, br.cloneNode(), br.cloneNode(),
+            "--- VÝSLEDKY VYHĽADÁVANIA ---", br.cloneNode(),
+            this.virtualDOM.resultListContainerDiv
+        );
+    }
+}
+
+
+customElements.define("meniny-dnesne", MeninyDnesne);
+customElements.define("meniny-plne", MeninyPlne);
