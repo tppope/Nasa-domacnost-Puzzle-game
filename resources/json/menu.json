@@ -18,22 +18,22 @@
 		   [
     			{
    			   "src": "puzzle_katarina_stasova.html",
-  			    "title": "Katka",
+  			    "title": "Katkina miestnosť",
 				"sub": null
   			},
     			{
    			   "src": "puzzle_tomas_popik.html",
-  			    "title": "Tomas",
+  			    "title": "Tomášova miestnosť",
 				"sub": null
   			},
     			{
    			   "src": "filip",
-  			    "title": "Filip",
+  			    "title": "Filipova miestnosť",
 				"sub": null
   			},
     			{
-   			   "src": "juraj",
-  			    "title": "Juraj",
+   			   "src": "puzzle_juraj_zozulak.html",
+  			    "title": "Jurajova miestnosť",
 				"sub": null
   			}
 		   ]
@@ -42,8 +42,8 @@
 	]
     },
     {
-      "src": "kalendar",
-      "title": "Kalendár",
+      "src": "about_us.html",
+      "title": "O nás",
       "sub": null
     }
   ]
