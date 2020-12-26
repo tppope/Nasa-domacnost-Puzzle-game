@@ -105,8 +105,8 @@ function setDragAndDrop(draggableImage,right_place){
 }
 
 function playDemo(){
-    setTimeout(change_reset_button(),1);
-    setTimeout(cancelDragAndDrop(),20);
+    setTimeout(change_reset_button,1);
+    setTimeout(cancelDragAndDrop,20);
     setTimeout(settingMediaQueryChangeFalse,40)
     startPlace();
     setTimeout(turnOnTransition,100);
@@ -155,7 +155,7 @@ function change_reset_button(){
 function setWrongPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
+    Array.from(images).forEach(function (element){
 
         if (mediaQueryChange){
             if(element.draggable === false)
@@ -179,7 +179,7 @@ function setRightPlace(){
 function turnOffTransition(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
+    Array.from(images).forEach(function (element){
         element.style.transition = "all 0s";
         element.style.transitionDelay = "0s";
     })
