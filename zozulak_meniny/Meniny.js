@@ -234,7 +234,6 @@ class MeninyDnesne extends Meniny {
         let br = document.createElement("br");
 
         this.shadowRoot.append(
-            "--- DNEŠNÝ DEŇ ---", br.cloneNode(),
             this.virtualDOM.currentDayResult
         );
     }

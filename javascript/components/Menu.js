@@ -1,6 +1,5 @@
 const template = document.createElement("template");
 template.innerHTML = `
-
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">   
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
 
@@ -9,7 +8,6 @@ template.innerHTML = `
             <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto" id ="menu">
                 </ul>
@@ -57,9 +55,6 @@ template.innerHTML = `
             
             .dropdown-submenu.pull-left {
                 float: none;
-            }
-            ul{
-                
             }
             .dropdown-submenu.pull-left>.dropdown-menu {
                 left: -100%;
