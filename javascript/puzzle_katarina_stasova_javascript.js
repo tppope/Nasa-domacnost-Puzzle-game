@@ -40,21 +40,6 @@ let wrong_places_mobile = [
     ["135%", "-5%"]
 ];
 
-let mediaQuery = window.matchMedia("(max-width: 768px)");
-let mediaQueryChange = false;
-mediaQuery.addListener(mediaQueryPuzzle);
-
-function settingMediaQueryChangeTrue(){
-    mediaQueryChange = true;
-}
-function settingMediaQueryChangeFalse(){
-    mediaQueryChange = false;
-}
-
-function mediaQueryPuzzle (){
-    setTimeout(settingMediaQueryChangeTrue,70);
-    setTimeout(setWrongPlace,80);
-}
 
 $(window).on("load",function (){
     cancelDragAndDrop();
@@ -115,17 +100,16 @@ function setDragAndDrop(name,right_place){
 }
 
 function playDemo(){
-    setTimeout(change_reset_button(),1);
-    setTimeout(cancelDragAndDrop(),10);
+    setTimeout(change_reset_button,1);
+    setTimeout(cancelDragAndDrop,20);
     startPlace();
-    setTimeout(turnOnTransition,50);
-    setTimeout(setRightPlace,60);
+    setTimeout(turnOnTransition,80);
+    setTimeout(setRightPlace,100);
 }
 
 function startPlace(){
-    setTimeout(settingMediaQueryChangeFalse,20)
-    setTimeout(turnOffTransition,30);
-    setTimeout(setWrongPlace,40);
+    setTimeout(turnOffTransition,40);
+    setTimeout(setWrongPlace,60);
 }
 
 function play(){
@@ -166,23 +150,15 @@ function change_reset_button(){
 function setWrongPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
+    let mediaQuery = window.matchMedia("(max-width: 768px)");
+
     Array.from(images).forEach(function (element, index){
-        if(mediaQuery.matches){
-            if(mediaQueryChange){
-                if(element.draggable === true)
-                    changePosition(element,wrong_places_mobile[index]);
-            }
-            else
+        if(mediaQuery.matches)
                 changePosition(element,wrong_places_mobile[index]);
-        }
-        else{
-            if(mediaQueryChange){
-                if(element.draggable === true)
-                    changePosition(element,wrong_places[index]);
-            }
-            else
+
+        else
                 changePosition(element,wrong_places[index]);
-        }
+
     })
 }
 
