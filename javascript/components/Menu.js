@@ -68,10 +68,11 @@ template.innerHTML = `
                 height: 0;
                 border-color: transparent;
                 border-style: solid;
-                border-width: 5px 0 5px 5px;
-                border-left-color: #ccc;
-                margin-top: 5px;
-                margin-right: -10px;
+                border-width: 5px 5px 0 5px;
+                border-top-color: #ccc;
+                margin-top: 10px;
+                margin-left: 5px;
+                margin-right: -15px;
             }
             
             .dropdown-submenu:hover>a:after {

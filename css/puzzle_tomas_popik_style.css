@@ -34,52 +34,52 @@ div#puzzle_space div{
 div#puzzle_space img{
     z-index: 0;
 }
-img#floor_draggable{
+img#floor{
     top: 70%;
     left: 0;
     width: 100%;
 }
-img#night_table_draggable{
+img#night_table{
     top: 54%;
     left: 0;
     width: 17.8%;
 }
-img#bed_draggable{
+img#bed{
     top: 60.4%;
     left: 12.8%;
     width: 57.2%;
 }
-img#pillows_draggable{
+img#pillows{
     top: 53%;
     left: 15.3%;
     width: 28%;
 }
-img#upper_bed_draggable{
+img#upper_bed{
     top: 37.2%;
     left: 8.5%;
     width: 32.8%;
 }
-img#left_wall_draggable{
+img#left_wall{
     top: 0;
     left: 0;
     width: 50%;
 }
-img#upper_wall_draggable{
+img#upper_wall{
     top: 0;
     left: 20.2%;
     width: 79.8%;
 }
-img#missing_wall_draggable{
+img#missing_wall{
     top: 17.2%;
     left: 46.5%;
     width: 5.65%;
 }
-img#right_wall_draggable{
+img#right_wall{
     top: 43%;
     left: 52%;
     width: 48%;
 }
-img#right_upper_wall_draggable{
+img#right_upper_wall{
     top: 2.5%;
     left: 51.5%;
     width: 48.5%;
