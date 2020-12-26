@@ -4,7 +4,7 @@ template.innerHTML = `
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">   
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
 
-    <nav class="=navbar navbar-expand-md  navbar-light py-3 shadow-sm" style="background-color: #e3f2fd;">
+    <nav class="=navbar navbar-expand-md navbar-light bg-white py-3 shadow-sm">
         <div>
             <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
                 <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,6 @@ template.innerHTML = `
             }
             
             .dropdown-submenu>.dropdown-menu {
-                background-color: #e3f2fd;
                 top: 120%;
                 left: 0;
                 margin-top: -6px;
@@ -58,6 +57,9 @@ template.innerHTML = `
             
             .dropdown-submenu.pull-left {
                 float: none;
+            }
+            ul{
+                
             }
             .dropdown-submenu.pull-left>.dropdown-menu {
                 left: -100%;
