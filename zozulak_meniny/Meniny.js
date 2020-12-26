@@ -101,34 +101,42 @@ class Meniny extends HTMLElement {
 
 
     getSearchString() {
-        let normalizedSubstring = this.virtualDOM.searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-        let foundDates = [];
-
-        let br = document.createElement("br");
-
-        let skratky = ["SKd", "SK", "CZ", "HU", "PL", "AT", "SKdni", "SKsviatky", "CZsviatky"];
-
-
-        for (let datum in MENINY_DATASET_NORMALIZED) {
-            let found = false;
-            for (let skratka of skratky) {
-                let str = MENINY_DATASET_NORMALIZED[datum][skratka];
-                if (str != undefined) {
-                    found = ( str.search(normalizedSubstring) != -1 );
-                }
-
-                if (found) {
-                    foundDates.push(
-                        this.getResultByDatum( MENINY_DATASET[datum].den ),
-                        br.cloneNode()
-                    );
-                    break;
-                }
-            }
+        this.virtualDOM.searchInput.value = this.virtualDOM.searchInput.value.trim();
+        if ( this.virtualDOM.searchInput.value.length == 0 ) {
+            this.virtualDOM.resultList = [];
         }
 
-        this.virtualDOM.resultList = foundDates;
+        else {
+            let normalizedSubstring = this.virtualDOM.searchInput.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            let foundDates = [];
+
+            let br = document.createElement("br");
+
+            let skratky = ["SKd", "SK", "CZ", "HU", "PL", "AT", "SKdni", "SKsviatky", "CZsviatky"];
+
+
+            for (let datum in MENINY_DATASET_NORMALIZED) {
+                let found = false;
+                for (let skratka of skratky) {
+                    let str = MENINY_DATASET_NORMALIZED[datum][skratka];
+                    if (str != undefined) {
+                        found = ( str.search(normalizedSubstring) != -1 );
+                    }
+
+                    if (found) {
+                        foundDates.push(
+                            this.getResultByDatum( MENINY_DATASET[datum].den ),
+                            br.cloneNode()
+                        );
+                        break;
+                    }
+                }
+            }
+
+            this.virtualDOM.resultList = foundDates;
+        }
+
         this.showResults.bind(this)();
     }
 
