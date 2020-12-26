@@ -1,44 +1,41 @@
-let floor_right_place = ["70%", "0"];
-let night_table_right_place = ["54%", "0"];
-let bed_right_place = ["60.4%", "12.8%"];
-let pillows_right_place = ["53%", "15.3%"];
-let upper_bed_right_place = ["37.2%", "8.5%"];
-let left_wall_right_place = ["0", "0"];
-let upper_wall_right_place = ["0", "20.2%"];
-let missing_wall_right_place = ["17.2%", "46.5%"];
-let right_wall_right_place = ["43%", "52%"];
-let right_upper_wall_right_place = ["2.5%", "51.5%"];
+let right_places = {
+    floor: ["70%", "0"],
+    night_table: ["54%", "0"],
+    bed: ["60.4%", "12.8%"],
+    pillows: ["53%", "15.3%"],
+    upper_bed: ["37.2%", "8.5%"],
+    left_wall: ["0", "0"],
+    upper_wall: ["0", "20.2%"],
+    missing_wall: ["17.2%", "46.5%"],
+    right_wall: ["43%", "52%"],
+    right_upper_wall: ["2.5%", "51.5%"],
+};
 
-let right_places = [floor_right_place,night_table_right_place,bed_right_place,pillows_right_place,upper_bed_right_place,
-    left_wall_right_place, upper_wall_right_place, missing_wall_right_place, right_wall_right_place,right_upper_wall_right_place];
+let wrong_places = {
+    floor: ["120%", "-60%"],
+    night_table: ["10%", "-50%"],
+    bed: ["127%", "100%"],
+    pillows: ["50%", "-55%"],
+    upper_bed: ["70%", "110%"],
+    left_wall: ["3%", "106%"],
+    upper_wall: ["105%", "40%"],
+    missing_wall: ["5%", "-20%"],
+    right_wall: ["127%", "45%"],
+    right_upper_wall: ["65%", "-55%"],
+};
 
-let floor_wrong_place = ["120%", "-60%"];
-let night_table_wrong_place = ["10%", "-50%"];
-let bed_wrong_place = ["127%", "100%"];
-let pillows_wrong_place = ["50%", "-55%"];
-let upper_bed_wrong_place = ["70%", "110%"];
-let left_wall_wrong_place = ["3%", "106%"];
-let upper_wall_wrong_place = ["105%", "40%"];
-let missing_wall_wrong_place = ["5%", "-20%"];
-let right_wall_wrong_place = ["127%", "45%"];
-let right_upper_wall_wrong_place = ["65%", "-55%"];
-
-let wrong_places = [floor_wrong_place,night_table_wrong_place,bed_wrong_place,pillows_wrong_place,upper_bed_wrong_place,
-    left_wall_wrong_place,upper_wall_wrong_place,missing_wall_wrong_place,right_wall_wrong_place,right_upper_wall_wrong_place];
-
-let floor_wrong_place_mobile = ["170%", "0"];
-let night_table_wrong_place_mobile = ["145%", "10%"];
-let bed_wrong_place_mobile = ["127%", "48%"];
-let pillows_wrong_place_mobile = ["160%", "30%"];
-let upper_bed_wrong_place_mobile = ["253%", "10%"];
-let left_wall_wrong_place_mobile = ["203%", "50%"];
-let upper_wall_wrong_place_mobile = ["105%", "25%"];
-let missing_wall_wrong_place_mobile = ["140%", "-3%"];
-let right_wall_wrong_place_mobile = ["110%", "-4%"];
-let right_upper_wall_wrong_place_mobile = ["200%", "-3%"];
-
-let wrong_places_mobile = [floor_wrong_place_mobile,night_table_wrong_place_mobile,bed_wrong_place_mobile,pillows_wrong_place_mobile,upper_bed_wrong_place_mobile,
-    left_wall_wrong_place_mobile,upper_wall_wrong_place_mobile,missing_wall_wrong_place_mobile,right_wall_wrong_place_mobile,right_upper_wall_wrong_place_mobile];
+let wrong_places_mobile = {
+    floor: ["170%", "0"],
+    night_table: ["145%", "10%"],
+    bed: ["127%", "48%"],
+    pillows: ["160%", "30%"],
+    upper_bed: ["253%", "10%"],
+    left_wall: ["203%", "50%"],
+    upper_wall: ["105%", "25%"],
+    missing_wall: ["140%", "-3%"],
+    right_wall: ["110%", "-4%"],
+    right_upper_wall: ["200%", "-3%"],
+};
 
 let mediaQuery = window.matchMedia("(max-width: 768px)");
 let mediaQueryChange = false;
@@ -61,16 +58,11 @@ $(window).on("load",function (){
 });
 
 function dragAndDrop(){
-    setDragAndDrop("floor",floor_right_place);
-    setDragAndDrop("night_table",night_table_right_place);
-    setDragAndDrop("bed",bed_right_place);
-    setDragAndDrop("pillows",pillows_right_place);
-    setDragAndDrop("upper_bed",upper_bed_right_place);
-    setDragAndDrop("left_wall",left_wall_right_place);
-    setDragAndDrop("upper_wall",upper_wall_right_place);
-    setDragAndDrop("missing_wall",missing_wall_right_place);
-    setDragAndDrop("right_wall",right_wall_right_place);
-    setDragAndDrop("right_upper_wall",right_upper_wall_right_place);
+    let puzzle = document.getElementById("puzzle_space");
+    let images = puzzle.getElementsByTagName("img");
+    Array.from(images).forEach(function (element){
+        setDragAndDrop(element,right_places[element.id]);
+    })
 }
 
 function cancelDragAndDrop(){
@@ -83,8 +75,8 @@ function cancelDragAndDrop(){
     })
 }
 
-function setDragAndDrop(name,right_place){
-    let draggableImage = document.getElementById(name+"_draggable");
+function setDragAndDrop(draggableImage,right_place){
+    console.log(typeof draggableImage.id);
     draggableImage.draggable = true;
     $( draggableImage ).draggable({
         revert: "invalid",
@@ -97,8 +89,8 @@ function setDragAndDrop(name,right_place){
         }
     });
 
-    $( "#"+name+"_droppable" ).droppable({
-        accept: "#"+name+"_draggable",
+    $( "#"+draggableImage.id+"_droppable" ).droppable({
+        accept: "#"+draggableImage.id,
         tolerance: "fit",
         drop: function( event, ui ){
             draggableImage.style.transition = "all 1s";
@@ -114,22 +106,22 @@ function setDragAndDrop(name,right_place){
 
 function playDemo(){
     setTimeout(change_reset_button(),1);
-    setTimeout(cancelDragAndDrop(),10);
+    setTimeout(cancelDragAndDrop(),20);
+    setTimeout(settingMediaQueryChangeFalse,40)
     startPlace();
-    setTimeout(turnOnTransition,50);
-    setTimeout(setRightPlace,60);
+    setTimeout(turnOnTransition,100);
+    setTimeout(setRightPlace,120);
 }
 
 function startPlace(){
-    setTimeout(settingMediaQueryChangeFalse,20)
-    setTimeout(turnOffTransition,30);
-    setTimeout(setWrongPlace,40);
+    setTimeout(turnOffTransition,60);
+    setTimeout(setWrongPlace,80);
 }
 
 function play(){
     change_start_button();
-    startPlace();
     dragAndDrop();
+    startPlace();
 }
 
 function changePosition(element,place){
@@ -140,15 +132,14 @@ function changePosition(element,place){
 function change_start_button(){
     let start_button = document.getElementById("start_button");
     if ($(start_button).hasClass("btn-outline-success")){
-        start();
         start_button.classList.remove("btn-outline-success");
         start_button.classList.add("btn-outline-danger");
         start_button.innerText = "Reset";
     }
-    else{
+    else
         reset();
-        start();
-    }
+
+    start();
 }
 
 function change_reset_button(){
@@ -165,30 +156,23 @@ function setWrongPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
-        if(mediaQuery.matches){
-            if(mediaQueryChange){
-                if(element.draggable === true)
-                    changePosition(element,wrong_places_mobile[index]);
-            }
-            else
-                changePosition(element,wrong_places_mobile[index]);
+
+        if (mediaQueryChange){
+            if(element.draggable === false)
+                return;
         }
-        else{
-            if(mediaQueryChange){
-                if(element.draggable === true)
-                    changePosition(element,wrong_places[index]);
-            }
-            else
-                changePosition(element,wrong_places[index]);
-        }
+        if(mediaQuery.matches)
+            changePosition(element,wrong_places_mobile[element.id]);
+        else
+            changePosition(element,wrong_places[element.id]);
     })
 }
 
 function setRightPlace(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
-        changePosition(element,right_places[index]);
+    Array.from(images).forEach(function (element){
+        changePosition(element,right_places[element.id]);
     })
 }
 
@@ -214,7 +198,7 @@ function checkAllDropped(){
     let puzzle = document.getElementById("puzzle_space");
     let images = puzzle.getElementsByTagName("img");
     let draggable = true;
-    Array.from(images).forEach(function (element, index){
+    Array.from(images).forEach(function (element){
         if (element.draggable === true)
             draggable = false;
     })

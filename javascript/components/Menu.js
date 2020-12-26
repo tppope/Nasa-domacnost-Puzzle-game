@@ -1,52 +1,29 @@
 const template = document.createElement("template");
 template.innerHTML = `
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <script src="../jQuery/jquery-3.5.1.min.js"></script>
-    <script src="../bootstrap/bootstrap.min.js"></script>
-    
-    <script src="../nasa_domacnost_javascript.js" defer></script>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">   
+    <script src="javascript/bootstrap/bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-white py-3 shadow-sm">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand font-weight-bold">Multilevel Dropdown</a>
-
+    <nav class="=navbar navbar-expand-md  navbar-light py-3 shadow-sm" style="background-color: #e3f2fd;">
+        <div>
             <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-
             <div id="navbarContent" class="collapse navbar-collapse">
-
                 <ul class="navbar-nav mr-auto" id ="menu">
                 </ul>
             </div>
         </div>
     </nav>
         
-        <style>
-        
-            @media screen and (min-width:768px) {
-                .navbar-brand-centered {
-                    position: absolute;
-                    left: 50%;
-                    display: block;
-                    width: 160px;
-                    text-align: center;
-                    background-color: #eee;
-                }
-                .navbar>.container .navbar-brand-centered,
-                .navbar>.container-fluid .navbar-brand-centered {
-                    margin-left: -80px;
-                }
-            }
-            
+        <style>    
             .dropdown-submenu {
                 position: relative;
             }
             
             .dropdown-submenu>.dropdown-menu {
+                background-color: #e3f2fd;
                 top: 120%;
                 left: 0;
                 margin-top: -6px;
@@ -68,20 +45,20 @@ template.innerHTML = `
                 height: 0;
                 border-color: transparent;
                 border-style: solid;
-                border-width: 5px 0 5px 5px;
-                border-left-color: #ccc;
-                margin-top: 5px;
-                margin-right: -10px;
+                border-width: 5px 5px 0 5px;
+                border-top-color: #ccc;
+                margin-top: 10px;
+                margin-left: 5px;
+                margin-right: -15px;
             }
             
             .dropdown-submenu:hover>a:after {
-                border-left-color: #fff;
+                border-top-color: black;
             }
             
             .dropdown-submenu.pull-left {
                 float: none;
             }
-            
             .dropdown-submenu.pull-left>.dropdown-menu {
                 left: -100%;
                 margin-left: 10px;
@@ -89,10 +66,7 @@ template.innerHTML = `
                 -moz-border-radius: 6px 0 6px 6px;
                 border-radius: 6px 0 6px 6px;
             }
-
         </style>
-
-
 `;
 
 
