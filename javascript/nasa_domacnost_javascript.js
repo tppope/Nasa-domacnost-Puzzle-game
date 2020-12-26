@@ -14,6 +14,4 @@ $(window).on("load",function (){
     document.getElementById("right").style.bottom = 22 +"%";
     document.getElementById("right").style.right = 0 +"%";
 
-
-
 });
