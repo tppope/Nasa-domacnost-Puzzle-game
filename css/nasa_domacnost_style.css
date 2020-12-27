@@ -157,7 +157,7 @@ footer{
     font-weight: bold;
     font-family: "Arial",Arial,sans-serif;
     font-size: 1.2vw;
-    padding: 3px 0 3px 5px;
+    padding: 0.5vw 0 0.5vw 5px;
 }
 @media (max-width: 768px){
     h1{
