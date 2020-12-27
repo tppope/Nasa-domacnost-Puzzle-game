@@ -32,57 +32,57 @@ div#pictures div{
 div#pictures img{
     z-index: 0;
 }
-img#floor_draggable{
+img#floor{
     top: 76.5%;
     left: 26.8%;
     width: 73.4%;
 }
-img#left_wall_draggable{
+img#left_wall{
     top: 0;
     left: 0;
     width: 23.2%;
 }
-img#middle_table_draggable{
+img#middle_table{
     top: 66.7%;
     left: 43.9%;
     width: 23%;
 }
-img#middle_wall_draggable{
+img#middle_wall{
     top: 7.1%;
     left: 22.9%;
     width: 57%;
 }
-img#next_to_sofa_draggable{
+img#next_to_sofa{
     top: 70.7%;
     left: 0;
     width: 12.2%;
 }
-img#right_wall_draggable{
+img#right_wall{
     top: 0;
     left: 76.6%;
     width: 23.2%;
 }
-img#sofa_draggable{
+img#sofa{
     top: 57.8%;
     left: 0;
     width: 38.2%;
 }
-img#under_tv_draggable{
+img#under_tv{
     top: 65.5%;
     left: 71%;
     width: 29.3%;
 }
-img#upper_wall_draggable{
+img#upper_wall{
     top: 0;
     left: 18.3%;
     width: 64%;
 }
-img#wardrobe_draggable{
+img#wardrobe{
     top: 15.5%;
     left: 72.4%;
     width: 12.1%;
 }
-img#window_draggable{
+img#window{
     top: 19%;
     left: 32.2%;
     width: 35.5%;

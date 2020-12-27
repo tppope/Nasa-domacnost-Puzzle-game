@@ -54,12 +54,12 @@ let wrong_places_mobile = [
 ];
 
 $(window).on("load",function (){
-    cancelDragAndDrop();
+    stopDraggable();
 });
 
-function cancelDragAndDrop(){
+function stopDraggable(){
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         element.draggable = false;
         if ($( element ).hasClass("ui-draggable"))
             $( element ).draggable( "option", "disabled", true );
@@ -67,7 +67,7 @@ function cancelDragAndDrop(){
 }
 
 function setDragAndDrop(name,right_place){
-    let draggableImage = document.getElementById(name+"_draggable");
+    let draggableImage = document.getElementById(name);
     draggableImage.draggable = true;
     $( draggableImage ).draggable({
         revert: "invalid",
@@ -81,7 +81,7 @@ function setDragAndDrop(name,right_place){
     });
 
     $( "#"+name+"_droppable" ).droppable({
-        accept: "#"+name+"_draggable",
+        accept: "#"+name,
         tolerance: "fit",
         drop: function(){
             draggableImage.style.transition = "all 1s";
@@ -90,7 +90,10 @@ function setDragAndDrop(name,right_place){
             draggableImage.draggable = false;
             if(isRightPosition()){
                 pause();
-                showModal();
+                document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
+                $('#exampleModalCenter').modal({
+                    keyboard: false
+                });
             }
         }
     });
@@ -98,7 +101,7 @@ function setDragAndDrop(name,right_place){
 
 function playDemo(){
     setTimeout(change_reset_button,1);
-    setTimeout(cancelDragAndDrop,20);
+    setTimeout(stopDraggable,20);
     startPlace();
     setTimeout(turnOnTransition,80);
     setTimeout(setRightPlace,100);
@@ -150,7 +153,7 @@ function setWrongPlace(){
     let mediaQuery = window.matchMedia("(max-width: 768px)");
 
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         if(mediaQuery.matches)
                 changePosition(element,wrong_places_mobile[i]);
         else
@@ -160,14 +163,14 @@ function setWrongPlace(){
 
 function setRightPlace(){
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         changePosition(element,right_places[i]);
     }
 }
 
 function turnOffTransition(){
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         element.style.transition = "all 0s";
         element.style.transitionDelay = "0s";
     }
@@ -175,17 +178,16 @@ function turnOffTransition(){
 
 function turnOnTransition(){
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         element.style.transition = "all 1s";
         element.style.transitionDelay = i + "s";
     }
 }
 
 function isRightPosition(){
-
     let draggable = true;
     for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]+"_draggable");
+        let element = document.getElementById(name_picture[i]);
         if (element.draggable === true)
             draggable = false;
     }
@@ -193,12 +195,6 @@ function isRightPosition(){
 }
 
 
-function showModal(){
-    document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
-    $('#exampleModalCenter').modal({
-        keyboard: false
-    });
-}
 
 //STOPKY
 
