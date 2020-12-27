@@ -1,11 +1,9 @@
-div#puzzle_space{
+div#pictures{
     position: relative;
     height: 30vw;
     width: 45%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto auto 40vw auto;
     border: black solid 3px;
-    margin-bottom: 20vw;
 }
 #interfacePuzzle{
     position: relative;
@@ -13,7 +11,7 @@ div#puzzle_space{
     width: 100%;
 }
 @media (max-width: 768px){
-    div#puzzle_space{
+    div#pictures{
         height: 59vw;
         width: 90%;
         margin-bottom: 108vw;
@@ -25,13 +23,13 @@ div#puzzle_space{
         right: 5vw !important;
     }
 }
-div#puzzle_space *{
+div#pictures *{
     position: absolute;
 }
-div#puzzle_space div{
+div#pictures div{
     z-index: -1;
 }
-div#puzzle_space img{
+div#pictures img{
     z-index: 0;
 }
 img#floor_draggable{
@@ -135,11 +133,10 @@ div#sofa_droppable{
     width: 42%;
 }
 div#under_tv_droppable{
-
-    left: 67%;
-    top: 62%;
-    height: 37%;
-    width: 35%;
+    left: 68%;
+    top: 60%;
+    height: 39%;
+    width: 36%;
 }
 div#upper_wall_droppable{
     left: 16%;

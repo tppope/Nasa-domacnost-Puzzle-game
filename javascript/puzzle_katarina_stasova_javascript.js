@@ -1,3 +1,16 @@
+let name_picture = [
+    "floor",
+    "left_wall",
+    "middle_table",
+    "middle_wall",
+    "next_to_sofa",
+    "right_wall",
+    "sofa",
+    "under_tv",
+    "upper_wall",
+    "wardrobe",
+    "window"];
+
 let right_places = [
     ["76.5%", "26.8%"],
     ["0%", "0"],
@@ -40,28 +53,18 @@ let wrong_places_mobile = [
     ["135%", "-5%"]
 ];
 
-
 $(window).on("load",function (){
     cancelDragAndDrop();
 });
 
 function dragAndDrop(){
-    setDragAndDrop("floor",right_places[0]);
-    setDragAndDrop("left_wall",right_places[1]);
-    setDragAndDrop("middle_table",right_places[2]);
-    setDragAndDrop("middle_wall",right_places[3]);
-    setDragAndDrop("next_to_sofa",right_places[4]);
-    setDragAndDrop("right_wall",right_places[5]);
-    setDragAndDrop("sofa",right_places[6]);
-    setDragAndDrop("under_tv",right_places[7]);
-    setDragAndDrop("upper_wall",right_places[8]);
-    setDragAndDrop("wardrobe",right_places[9]);
-    setDragAndDrop("window",right_places[10]);
-
-};
+    for(let i = 0; i<name_picture.length; i++){
+        setDragAndDrop(name_picture[i],right_places[i]);
+    }
+}
 
 function cancelDragAndDrop(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
         element.draggable = false;
@@ -148,7 +151,7 @@ function change_reset_button(){
 }
 
 function setWrongPlace(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     let mediaQuery = window.matchMedia("(max-width: 768px)");
 
@@ -163,7 +166,7 @@ function setWrongPlace(){
 }
 
 function setRightPlace(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
         changePosition(element,right_places[index]);
@@ -171,7 +174,7 @@ function setRightPlace(){
 }
 
 function turnOffTransition(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
         element.style.transition = "all 0s";
@@ -180,7 +183,7 @@ function turnOffTransition(){
 }
 
 function turnOnTransition(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     Array.from(images).forEach(function (element, index){
         element.style.transition = "all 1s";
@@ -189,7 +192,7 @@ function turnOnTransition(){
 }
 
 function checkAllDropped(){
-    let puzzle = document.getElementById("puzzle_space");
+    let puzzle = document.getElementById("pictures");
     let images = puzzle.getElementsByTagName("img");
     let draggable = true;
     Array.from(images).forEach(function (element, index){
