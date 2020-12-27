@@ -57,20 +57,13 @@ $(window).on("load",function (){
     cancelDragAndDrop();
 });
 
-function dragAndDrop(){
-    for(let i = 0; i<name_picture.length; i++){
-        setDragAndDrop(name_picture[i],right_places[i]);
-    }
-}
-
 function cancelDragAndDrop(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
         element.draggable = false;
         if ($( element ).hasClass("ui-draggable"))
             $( element ).draggable( "option", "disabled", true );
-    })
+    }
 }
 
 function setDragAndDrop(name,right_place){
@@ -90,13 +83,14 @@ function setDragAndDrop(name,right_place){
     $( "#"+name+"_droppable" ).droppable({
         accept: "#"+name+"_draggable",
         tolerance: "fit",
-        drop: function( event, ui ){
+        drop: function(){
             draggableImage.style.transition = "all 1s";
             changePosition(draggableImage,right_place);
             $( draggableImage ).draggable( "option", "disabled", true);
             draggableImage.draggable = false;
-            if(checkAllDropped()){
-                endGame();
+            if(isRightPosition()){
+                pause();
+                showModal();
             }
         }
     });
@@ -118,8 +112,9 @@ function startPlace(){
 function play(){
     change_start_button();
     startPlace();
-    dragAndDrop();
-}
+    for(let i = 0; i<name_picture.length; i++){
+        setDragAndDrop(name_picture[i],right_places[i]);
+    }}
 
 function changePosition(element,place){
     element.style.top = place[0];
@@ -151,61 +146,52 @@ function change_reset_button(){
 }
 
 function setWrongPlace(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
+
     let mediaQuery = window.matchMedia("(max-width: 768px)");
 
-    Array.from(images).forEach(function (element, index){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
         if(mediaQuery.matches)
-                changePosition(element,wrong_places_mobile[index]);
-
+                changePosition(element,wrong_places_mobile[i]);
         else
-                changePosition(element,wrong_places[index]);
-
-    })
+                changePosition(element,wrong_places[i]);
+    }
 }
 
 function setRightPlace(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
-        changePosition(element,right_places[index]);
-    })
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
+        changePosition(element,right_places[i]);
+    }
 }
 
 function turnOffTransition(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
         element.style.transition = "all 0s";
         element.style.transitionDelay = "0s";
-    })
+    }
 }
 
 function turnOnTransition(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
-    Array.from(images).forEach(function (element, index){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
         element.style.transition = "all 1s";
-        element.style.transitionDelay = index + "s";
-    })
+        element.style.transitionDelay = i + "s";
+    }
 }
 
-function checkAllDropped(){
-    let puzzle = document.getElementById("pictures");
-    let images = puzzle.getElementsByTagName("img");
+function isRightPosition(){
+
     let draggable = true;
-    Array.from(images).forEach(function (element, index){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]+"_draggable");
         if (element.draggable === true)
             draggable = false;
-    })
+    }
     return draggable;
 }
 
-function endGame(){
-    pause();
-    showModal();
-}
 
 function showModal(){
     document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
