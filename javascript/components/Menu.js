@@ -3,9 +3,9 @@ template.innerHTML = `
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">   
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-expand-md navbar-light bg-white py-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-white py-3" >
         <div>
-            <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+            <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarContent" class="collapse navbar-collapse">
