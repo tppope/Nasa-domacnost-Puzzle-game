@@ -17,14 +17,51 @@
     <script src="javascript/puzzle_juraj_zozulak_javascript.js"></script>
     <script src="javascript/components/Menu.js"></script>
 
+    <script src="javascript/components/WebCounter.js"></script>
+
+    <script src="zozulak_meniny/meniny-dataset.js"></script>
+    <script src="zozulak_meniny/meniny-dataset-normalized.js"></script>
+    <script src="zozulak_meniny/Meniny.js"></script>
+
 </head>
 <body>
-<header id="title_header">
+<header>
+    <div id="nameday-today">
+        <meniny-dnesne></meniny-dnesne>
+        <img src="resources/pictures/meniny/show-more.png" width="20" height="20" alt="show more" data-toggle="modal" data-target="#nameDayModal">
+    </div>
+    <div class="modal fade" id="nameDayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dnešok rozšírené</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <meniny-dnesne-plne></meniny-dnesne-plne>
+                </div>
+            </div>
+        </div>
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vyhľadávanie</h5>
+                </div>
+                <div class="modal-body">
+                    <meniny-vyhladavanie></meniny-vyhladavanie>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <h1>
         Jurajova miestnosť
     </h1>
 
     <me-nu></me-nu>
+
 </header>
 <section>
     <!-- Modal -->
@@ -34,7 +71,7 @@
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLongTitle">GRATULUJEME!</h3>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body modal-body-center">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvoriť</button>

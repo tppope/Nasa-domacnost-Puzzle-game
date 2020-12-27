@@ -29,6 +29,7 @@ class Meniny extends HTMLElement {
         this.virtualDOM.datumInput = document.createElement("input");
         
         this.setMultipleAttrs(this.virtualDOM.datumInput, {
+            class: "form-control",
             type: "text",
             placeholder: "31.03. alebo 31.3. bez medzier",
             pattern: "[0-9]{1,2}.[0-9]{1,2}.",
@@ -42,6 +43,7 @@ class Meniny extends HTMLElement {
         this.virtualDOM.searchInput = document.createElement("input");
         
         this.setMultipleAttrs(this.virtualDOM.searchInput, {
+            class: "form-control",
             type: "text",
             placeholder: "na diakritike a veľkosti písmen nezáleží",
             id: "datum"
@@ -52,7 +54,9 @@ class Meniny extends HTMLElement {
 
 
     setupInnerCSS() {
-        return `<style>
+        return `
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+        <style>
             input {
                 width: 250px;
             }
@@ -139,6 +143,7 @@ class Meniny extends HTMLElement {
 
 
         let short = document.createElement("div");
+        short.style.display = "inline";
 
         short.append(
             "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + md.SK
@@ -146,8 +151,7 @@ class Meniny extends HTMLElement {
 
         if (md.SKsviatky != undefined) {
             short.append(
-                br.cloneNode(),
-                "Dnešný sviatok je " + md.SKsviatky
+                ", dnešný sviatok je " + md.SKsviatky
             );
         }
 
@@ -231,7 +235,20 @@ class MeninyDnesne extends Meniny {
     setupElementBody() {
         this.setupCurrentDayShort();
 
-        let br = document.createElement("br");
+        this.shadowRoot.append(
+            this.virtualDOM.currentDayResult
+        );
+    }
+}
+
+class MeninyDnesnePlne extends Meniny {
+    constructor() {
+        super();
+        this.setupElementBody();
+    }
+
+    setupElementBody() {
+        this.setupCurrentDay();
 
         this.shadowRoot.append(
             this.virtualDOM.currentDayResult
@@ -239,7 +256,7 @@ class MeninyDnesne extends Meniny {
     }
 }
 
-class MeninyPlne extends Meniny {
+class MeninyVyhladavanie extends Meniny {
     constructor() {
         super();
         this.setupElementBody();
@@ -248,7 +265,6 @@ class MeninyPlne extends Meniny {
     setupElementBody() {
         this.setupDatumInput();
         this.setupSearchInput();
-        this.setupCurrentDay();
         
         this.virtualDOM.resultListContainerDiv = document.createElement("div");
 
@@ -261,15 +277,13 @@ class MeninyPlne extends Meniny {
             br.cloneNode(),
             "Zadaj meno alebo jeho časť: ",
             this.virtualDOM.searchInput,
-            br.cloneNode(), br.cloneNode(),
-            "--- DNEŠNÝ DEŇ ---", br.cloneNode(),
-            this.virtualDOM.currentDayResult, br.cloneNode(), br.cloneNode(),
-            "--- VÝSLEDKY VYHĽADÁVANIA ---", br.cloneNode(),
+            br.cloneNode(),
             this.virtualDOM.resultListContainerDiv
         );
     }
 }
 
 
+customElements.define("meniny-vyhladavanie", MeninyVyhladavanie);
+customElements.define("meniny-dnesne-plne", MeninyDnesnePlne);
 customElements.define("meniny-dnesne", MeninyDnesne);
-customElements.define("meniny-plne", MeninyPlne);
