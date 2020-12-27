@@ -2,26 +2,37 @@ const template = document.createElement("template");
 template.innerHTML = `
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">   
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
+    
 
-    <nav class="navbar navbar-expand-md navbar-light bg-white py-3" >
+    <nav class="navbar navbar-expand-md navbar-light py-3" style="background-color: #e3f2fd; position: relative;">
         <div>
-            <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" >
+            <button class="navbar-toggler" type="button" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto" id ="menu">
                 </ul>
+                <web-counter></web-counter>
             </div>
+            
         </div>
     </nav>
         
-        <style>    
+        <style> 
+       
+            web-counter {
+                position:absolute;
+                right: 2%;
+                font-weight: bold;
+                font-family: "Arial",Arial,sans-serif;
+                font-size: 15px;
+            }  
             .dropdown-submenu {
                 position: relative;
             }
             
             .dropdown-submenu>.dropdown-menu {
-                top: 120%;
+                top: 120%;modal-body-center
                 left: 0;
                 margin-top: -6px;
                 margin-left: -1px;
@@ -63,6 +74,16 @@ template.innerHTML = `
                 -moz-border-radius: 6px 0 6px 6px;
                 border-radius: 6px 0 6px 6px;
             }
+            @media (max-width: 768px){
+                web-counter {
+                position:absolute;
+                right: 3px;
+                bottom: 3px;
+                font-weight: bold;
+                font-family: "Arial",Arial,sans-serif;
+                font-size: 15px;
+                } 
+            }
         </style>
 `;
 
@@ -90,6 +111,7 @@ class Menu extends HTMLElement{
                 li.classList.add("dropdown-submenu");
                 var a = document.createElement("a");
                 a.classList.add("dropdown-item");
+                a.classList.add("dropdown-item");
                 a.setAttribute("href",menu[i].src);
                 a.textContent = menu[i].title;
                 li.appendChild(a);
@@ -111,6 +133,22 @@ class Menu extends HTMLElement{
             }
         }
     }
+    showNavbar() {
+
+        if (this.shadowRoot.querySelector('.show'))
+            this.shadowRoot.querySelector('#navbarContent').classList.remove("show");
+        else
+            this.shadowRoot.querySelector('#navbarContent').classList.add("show");
+    }
+
+    connectedCallback() {
+
+        this.shadowRoot.querySelector('.navbar-toggler').addEventListener("click", event => {
+            this.showNavbar();
+        });
+    }
+
+
 
 }
 

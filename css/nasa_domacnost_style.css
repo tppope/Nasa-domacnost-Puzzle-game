@@ -6,7 +6,6 @@
 div#title_picture{
     position: relative;
     height: 56vw;
-    border-radius: 50px;
     overflow: hidden;
 }
 div#title_picture img{

@@ -8,6 +8,8 @@ class WebCounter extends HTMLElement {
             webCounterInput: document.createElement("div"),
         };
 
+        this.virtualDOM.webCounterInput.id = "webCounter";
+
         this.shadowRoot.innerHTML = this.setCSS();
         this.setBody();
     }
