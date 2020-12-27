@@ -18,7 +18,7 @@ template.innerHTML = `
         </div>
     </nav>
         
-        <style> 
+        <style>
        
             web-counter {
                 position:absolute;
@@ -32,7 +32,7 @@ template.innerHTML = `
             }
             
             .dropdown-submenu>.dropdown-menu {
-                top: 120%;modal-body-center
+                top: 122%;
                 left: 0;
                 margin-top: -6px;
                 margin-left: -1px;
@@ -55,7 +55,7 @@ template.innerHTML = `
                 border-style: solid;
                 border-width: 5px 5px 0 5px;
                 border-top-color: #ccc;
-                margin-top: 10px;
+                margin-top: 13px;
                 margin-left: 5px;
                 margin-right: -15px;
             }
@@ -83,6 +83,13 @@ template.innerHTML = `
                 font-family: "Arial",Arial,sans-serif;
                 font-size: 15px;
                 } 
+                #navbarContent
+                {
+                    margin-bottom: 10px;
+                }
+            }
+            a{
+                font-size: 19px;
             }
         </style>
 `;
