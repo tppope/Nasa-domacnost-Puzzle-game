@@ -13,14 +13,14 @@ let name_picture = [
 
 let right_places = [
     ["76.5%", "26.8%"],
-    ["0%", "0"],
+    ["0%", "0%"],
     ["66.7%", "43.9%"],
     ["7.1%", "22.9%"],
     ["70.7%", "0%"],
     ["0%", "76.6%"],
-    ["57.8%", "0"],
+    ["57.8%", "0%"],
     ["65.5%", "71%"],
-    ["0", "18.3%"],
+    ["0%", "18.3%"],
     ["15.5%", "72.4%"],
     ["19%", "32.2%"]
 ];
@@ -155,9 +155,9 @@ function setWrongPlace(){
     for(let i = 0; i<name_picture.length; i++){
         let element = document.getElementById(name_picture[i]);
         if(mediaQuery.matches)
-                changePosition(element,wrong_places_mobile[i]);
+            changePosition(element,wrong_places_mobile[i]);
         else
-                changePosition(element,wrong_places[i]);
+            changePosition(element,wrong_places[i]);
     }
 }
 
@@ -185,13 +185,11 @@ function turnOnTransition(){
 }
 
 function isRightPosition(){
-    let draggable = true;
-    for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]);
-        if (element.draggable === true)
-            draggable = false;
+    for(let i = 0; i<name_picture.length; i++) {
+        if(document.getElementById(name_picture[i]).style.top !== right_places[i][0])
+            return false;
     }
-    return draggable;
+    return true;
 }
 
 
