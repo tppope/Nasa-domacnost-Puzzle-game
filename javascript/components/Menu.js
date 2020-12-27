@@ -14,7 +14,6 @@ template.innerHTML = `
                 </ul>
                 <web-counter></web-counter>
             </div>
-            
         </div>
     </nav>
         
@@ -32,7 +31,7 @@ template.innerHTML = `
             }
             
             .dropdown-submenu>.dropdown-menu {
-                top: 122%;
+                top: 118%;
                 left: 0;
                 margin-top: -6px;
                 margin-left: -1px;
