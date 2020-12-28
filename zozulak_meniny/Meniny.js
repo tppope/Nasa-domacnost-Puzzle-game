@@ -1,3 +1,55 @@
+/*const meninyXHR = new XMLHttpRequest();
+
+meninyXHR.open("GET", "zozulak_meniny/meniny-dataset.xml");
+meninyXHR.responseType = "document";
+meninyXHR.send();
+
+meninyXHR.onload = function() {
+    let zaznamy = Array.from( meninyXHR.responseXML.documentElement.children );
+
+    for (let a = 0; a < zaznamy.length; a++) {
+        let aktZaznamData = Array.from( zaznamy[a].children );
+        console.log(aktZaznamData);
+    }
+}
+
+meninyXHR.onerror = function() {
+    dump("Error while getting XML.");
+}
+
+
+
+function getCurrentDayShort() {
+    let d = new Date();
+    let currentDatum = (d.getMonth() + 1) +  d.getDate();
+
+
+    const meninyXHR = new XMLHttpRequest();
+
+    meninyXHR.open("GET", "zozulak_meniny/meniny-dataset.xml");
+    meninyXHR.responseType = "document";
+    meninyXHR.send();
+    
+    meninyXHR.onload = function() {
+        let zaznamy = Array.from( meninyXHR.responseXML.documentElement.children );
+    
+        for (let a = 0; a < zaznamy.length; a++) {
+            let aktZaznamData = Array.from( zaznamy[a].children );
+            console.log(aktZaznamData);
+
+            if (aktZaznamData.innerHTML == currentDatum) {
+
+            }
+        }
+    }
+    
+    meninyXHR.onerror = function() {
+        dump("Error while getting XML.");
+    }
+}
+*/
+
+
 class Meniny extends HTMLElement {
 	constructor() {
 		super();
@@ -127,7 +179,17 @@ class Meniny extends HTMLElement {
             mesiac: d.getMonth() + 1
         };
         
-        this.virtualDOM.currentDayResult = this.getResultByDatum(currentDatum);
+        const meninyXHR = new XMLHttpRequest();
+
+        meninyXHR.open("GET", "zozulak_meniny/meniny-dataset.xml");
+        meninyXHR.responseType = "document";
+        meninyXHR.send();
+        
+        meninyXHR.onload = this.getResultByDatum.bind(this, meninyXHR, currentDatum);
+        
+        meninyXHR.onerror = function() {
+            dump("Error while getting XML.");
+        }
     }
 
     setupCurrentDayShort() {
@@ -136,79 +198,132 @@ class Meniny extends HTMLElement {
             den: d.getDate(),
             mesiac: d.getMonth() + 1
         };
+
+
+        const meninyXHR = new XMLHttpRequest();
+
+        meninyXHR.open("GET", "zozulak_meniny/meniny-dataset.xml");
+        meninyXHR.responseType = "document";
+        meninyXHR.send();
         
-        let md = MENINY_DATASET[ currentDatum.mesiac + "-" + currentDatum.den ];
-
-        let br = document.createElement("br");
-
-
-        let short = document.createElement("div");
-        short.style.display = "inline";
-
-        short.append(
-            "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + md.SK
-        );
-
-        if (md.SKsviatky != undefined) {
-            short.append(
-                ", dnešný sviatok je " + md.SKsviatky
-            );
+        meninyXHR.onload = this.setupCurrentDayShortXMLOnload.bind(this, meninyXHR, currentDatum);
+        
+        meninyXHR.onerror = function() {
+            dump("Error while getting XML.");
         }
 
-
-        this.virtualDOM.currentDayResult = short;
+        
     }
 
+    setupCurrentDayShortXMLOnload(meninyXHR, currentDatum) {
+        let zaznamy = Array.from( meninyXHR.responseXML.documentElement.children );
 
-    getResultByDatum(datum) {
-        let br = document.createElement("br");
-        let bold = document.createElement("strong");
-
-        let builtResult = document.createElement("div");
-
-        let mesiace = ["január", "február", "marec", "apríl", "máj", "jún", "júl", "august", "september", "október", "november", "december"];
-
-        let datumNadpis = bold.cloneNode();
-        datumNadpis.append("Dátum: ");
-
-        let setup = [
-            datumNadpis,
-            datum.den + ". " + mesiace[ datum.mesiac - 1 ],
-            br.cloneNode()
-        ];
-
-        let meninyDen = MENINY_DATASET[ datum.mesiac + "-" + datum.den ];
+        let currentDatumTextual = currentDatum.mesiac + "" + currentDatum.den;
+        
+        for (let a = 0; a < zaznamy.length; a++) {
+            let aktZaznamRaw = zaznamy[a].children;
 
 
-        let skratky = {
-            "SK": "Slovenské meniny",
-            "SKd": "Slovenské meniny v plnom tvare",
-            "CZ": "České meniny",
-            "AT": "Rakúske meniny",
-            "PL": "Poľské meniny",
-            "HU": "Maďarské meniny",
-            "SKdni": "Slovenský pamätný deň",
-            "SKsviatky": "Slovenský sviatok",
-            "CZsviatky": "Český sviatok"
-        };
+            let aktZaznamData = {};
+            for (let b = 0; b < aktZaznamRaw.length; b++) {
+                aktZaznamData[ aktZaznamRaw[b].nodeName ] = aktZaznamRaw[b].innerHTML;
+            }
 
-        for (let skratka in skratky) {
-            if (meninyDen[skratka] != undefined) {
-                let b = bold.cloneNode();
-                b.append(skratky[skratka] + ": ");
+            if (aktZaznamData.den == currentDatumTextual) {
 
-                setup.push(
-                    b,
-                    meninyDen[skratka],
-                    br.cloneNode()
+                let short = document.createElement("div");
+                short.style.display = "inline";
+
+                short.append(
+                    "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + aktZaznamData.SK
+                );
+
+                if (aktZaznamData.SKsviatky != undefined) {
+                    short.append(
+                        ", dnešný sviatok je " + aktZaznamData.SKsviatky
+                    );
+                }
+
+
+                this.virtualDOM.currentDayResult = short;
+
+                this.shadowRoot.append(
+                    this.virtualDOM.currentDayResult
                 );
             }
         }
+    }
 
 
-        builtResult.append(...setup);
+    getResultByDatum(meninyXHR, datum) {
+        let zaznamy = Array.from( meninyXHR.responseXML.documentElement.children );
 
-        return builtResult;
+        let datumTextual = datum.mesiac + "" + datum.den;
+        
+        for (let a = 0; a < zaznamy.length; a++) {
+            let aktZaznamRaw = zaznamy[a].children;
+
+
+            let aktZaznamData = {};
+            for (let b = 0; b < aktZaznamRaw.length; b++) {
+                aktZaznamData[ aktZaznamRaw[b].nodeName ] = aktZaznamRaw[b].innerHTML;
+            }
+
+            if (aktZaznamData.den == datumTextual) {
+
+                let br = document.createElement("br");
+                let bold = document.createElement("strong");
+
+                let builtResult = document.createElement("div");
+
+                let mesiace = ["január", "február", "marec", "apríl", "máj", "jún", "júl", "august", "september", "október", "november", "december"];
+
+                let datumNadpis = bold.cloneNode();
+                datumNadpis.append("Dátum: ");
+
+                let setup = [
+                    datumNadpis,
+                    datum.den + ". " + mesiace[ datum.mesiac - 1 ],
+                    br.cloneNode()
+                ];
+
+
+                let skratky = {
+                    "SK": "Slovenské meniny",
+                    "SKd": "Slovenské meniny v plnom tvare",
+                    "CZ": "České meniny",
+                    "AT": "Rakúske meniny",
+                    "PL": "Poľské meniny",
+                    "HU": "Maďarské meniny",
+                    "SKdni": "Slovenský pamätný deň",
+                    "SKsviatky": "Slovenský sviatok",
+                    "CZsviatky": "Český sviatok"
+                };
+
+                for (let skratka in skratky) {
+                    if (aktZaznamData[skratka] != undefined) {
+                        let b = bold.cloneNode();
+                        b.append(skratky[skratka] + ": ");
+
+                        setup.push(
+                            b,
+                            aktZaznamData[skratka],
+                            br.cloneNode()
+                        );
+                    }
+                }
+
+
+                builtResult.append(...setup);
+
+
+                this.virtualDOM.currentDayResult = builtResult;
+
+                this.shadowRoot.append(
+                    this.virtualDOM.currentDayResult
+                );
+            }
+        }
     }
 
 
@@ -234,10 +349,6 @@ class MeninyDnesne extends Meniny {
 
     setupElementBody() {
         this.setupCurrentDayShort();
-
-        this.shadowRoot.append(
-            this.virtualDOM.currentDayResult
-        );
     }
 }
 
@@ -249,10 +360,6 @@ class MeninyDnesnePlne extends Meniny {
 
     setupElementBody() {
         this.setupCurrentDay();
-
-        this.shadowRoot.append(
-            this.virtualDOM.currentDayResult
-        );
     }
 }
 

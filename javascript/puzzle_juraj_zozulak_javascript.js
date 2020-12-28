@@ -78,7 +78,6 @@ function createPuzzlePieces() {
     });
 
     for (let nazov in obrazky) {
-        console.log(mierkaPuzzle, obrazky[nazov]);
         let dynamicStyleImg = `
             left:` + obrazky[nazov].insideXY[0] * mierkaPuzzle + `px;
             top:` + obrazky[nazov].insideXY[1] * mierkaPuzzle + `px;
