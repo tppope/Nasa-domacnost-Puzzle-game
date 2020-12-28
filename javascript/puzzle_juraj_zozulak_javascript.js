@@ -8,44 +8,44 @@ let obrazky = {
     "strop": {
         insideXY: [256, 0],
 		outsideXY: [-80, 720],
-        width: 450,
-        height: 250
+        width: 438,
+        height: 243
     },
     "prava-stena": {
         insideXY: [597, 0],
 		outsideXY: [900, -100],
-        width: 250,
-        height: 700
+        width: 234,
+        height: 687
     },
     "zadna-stena": {
         insideXY: [401, 222],
 		outsideXY: [-230, 480],
-        width: 220,
-        height: 240
+        width: 197,
+        height: 217
     },
     "dvere": {
         insideXY: [452, 262],
 		outsideXY: [850, 500],
-        width: 80,
-        height: 180
+        width: 74,
+        height: 170
     },
     "podlaha": {
         insideXY: [305, 423],
 		outsideXY: [-500, 700],
-        width: 440,
-        height: 280
+        width: 427,
+        height: 264
     },
     "policka": {
         insideXY: [0, 316],
 		outsideXY: [900, 430],
-        width: 440,
-        height: 380
+        width: 434,
+        height: 371
     },
     "zrkadlo": {
         insideXY: [89, 79],
 		outsideXY: [500, 720],
-        width: 210,
-        height: 490
+        width: 196,
+        height: 485
     }
 };
 
@@ -55,32 +55,47 @@ let
 
     startTime,
     elapsedTime = 0,
-    timerInterval; 
+    timerInterval,
+    
+    sirkaObrazovky = window.innerWidth,
+    mierkaPuzzle = 1;
 
 
 function createPuzzlePieces() {
-    let koeficientPosunu = 1;
-    let sirkaObrazovky = window.innerWidth;
-    /*if (sirkaObrazovky >= 1200) koeficientPosunu = 1;
-    else if (sirkaObrazovky >= 1050) koeficientPosunu = 0.6;
-    else if (sirkaObrazovky >= 992) koeficientPosunu = 0.5;
-    else if (sirkaObrazovky >= 768) koeficientPosunu = 0.45;
-    else if (sirkaObrazovky >= 600) koeficientPosunu = 0.3;
-    else if (sirkaObrazovky < 600) koeficientPosunu = 0.2;*/
+    if (sirkaObrazovky >= 1200) mierkaPuzzle = 1;
+    else if (sirkaObrazovky >= 1050) mierkaPuzzle = 0.6;
+    else if (sirkaObrazovky >= 992) mierkaPuzzle = 0.5;
+    else if (sirkaObrazovky >= 768) mierkaPuzzle = 0.45;
+    else if (sirkaObrazovky >= 600) mierkaPuzzle = 0.3;
+    else if (sirkaObrazovky < 600) mierkaPuzzle = 0.2;
 
 
     let puzzleDiv = $("#chodba_puzzle");
+    puzzleDiv.css({
+        "height": (693 * mierkaPuzzle) + "px",
+        "width": (837 * mierkaPuzzle) + "px",
+        "border": "black solid " + (3 * mierkaPuzzle) + "px"
+    });
+
     for (let nazov in obrazky) {
-        let dynamicStyle = `
-            left:` + (obrazky[nazov].insideXY[0] - 10 * koeficientPosunu) + `px;
-            top:` + (obrazky[nazov].insideXY[1] - 10 * koeficientPosunu) + `px;
-            width:` + (obrazky[nazov].width + 20 * koeficientPosunu) + `px;
-            height:` + (obrazky[nazov].height + 20 * koeficientPosunu) + `px;
+        console.log(mierkaPuzzle, obrazky[nazov]);
+        let dynamicStyleImg = `
+            left:` + obrazky[nazov].insideXY[0] * mierkaPuzzle + `px;
+            top:` + obrazky[nazov].insideXY[1] * mierkaPuzzle + `px;
+            width:` + obrazky[nazov].width * mierkaPuzzle + `px;
+            height:` + obrazky[nazov].height * mierkaPuzzle + `px;
+        `;
+        
+        let dynamicStyleDiv = `
+            left:` + (obrazky[nazov].insideXY[0] * mierkaPuzzle - 20) + `px;
+            top:` + (obrazky[nazov].insideXY[1] * mierkaPuzzle - 20) + `px;
+            width:` + (obrazky[nazov].width * mierkaPuzzle + 40) + `px;
+            height:` + (obrazky[nazov].height * mierkaPuzzle + 40) + `px;
         `;
 
         puzzleDiv.append(
-            '<img src="resources/pictures/zozulak_pictures/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '">' + 
-            '<div id="piece-' + nazov + '-container" style="' + dynamicStyle + '" class="puzzle-cast-container"></div>'
+            '<img src="resources/pictures/zozulak_pictures/' + nazov + '.png" alt="' + nazov + '" class="puzzle-cast" id="piece-' + nazov + '" style="' + dynamicStyleImg + '">' + 
+            '<div id="piece-' + nazov + '-container" style="' + dynamicStyleDiv + '" class="puzzle-cast-container"></div>'
         );
     }
 }
@@ -89,8 +104,8 @@ function createPuzzlePieces() {
 
 function placeImageInside(nazov) {
     $("#piece-" + nazov).css({
-        left: obrazky[nazov].insideXY[0] + "px",
-        top: obrazky[nazov].insideXY[1] + "px"
+        left: (obrazky[nazov].insideXY[0] * mierkaPuzzle) + "px",
+        top: (obrazky[nazov].insideXY[1] * mierkaPuzzle) + "px"
     });
 }
 
@@ -116,8 +131,8 @@ function placeInsideWithDelay() {
 function placeOutside() {
     for (let nazov in obrazky) {
         $("#piece-" + nazov).css({
-            left: obrazky[nazov].outsideXY[0] + "px",
-            top: obrazky[nazov].outsideXY[1] + "px"
+            left: (obrazky[nazov].outsideXY[0] * mierkaPuzzle) + "px",
+            top: (obrazky[nazov].outsideXY[1] * mierkaPuzzle) + "px"
         });
     }
 }
