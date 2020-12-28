@@ -4,7 +4,7 @@ template.innerHTML = `
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
     
 
-    <nav class="navbar navbar-expand-md navbar-light py-3" style="background-color: #e3f2fd; position: relative;">
+    <nav class="navbar navbar-expand-md navbar-light py-3">
         <div>
             <button class="navbar-toggler" type="button" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -18,6 +18,10 @@ template.innerHTML = `
     </nav>
         
         <style>
+            .navbar{
+                background: rgb(255,255,255);
+                background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(231,245,255,1) 50%, rgba(255,255,255,1) 100%);
+             }
        
             web-counter {
                 position:absolute;

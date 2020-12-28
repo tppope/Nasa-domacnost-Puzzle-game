@@ -1,4 +1,4 @@
-﻿let MENINY_DATASET = {
+let MENINY_DATASET = {
     "1-1": {
 		den: { mesiac: 1, den: 1},
 		SKsviatky: "Deň vzniku Slovenskej republiky",
