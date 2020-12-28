@@ -1,0 +1,19 @@
+﻿{
+    "1-1": {
+		den: { mesiac: 1, den: 1},
+		SKsviatky: "Deň vzniku Slovenskej republiky",
+		CZsviatky: "Den obnovy samostatného českého státu",
+		HU: "Fruzsina",
+		PL: "Mieszka, Mieczyslawa",
+		AT: "Neujahr"
+	},
+	"1-2": {
+		den: { mesiac: 1, den: 2},
+		SK: "Alexandra, Karina",
+		SKd: "Alexandra, Karina, Ábel, Makar, Karin, Kara, Sandra, Saša",
+		CZ: "Karina",
+		HU: "Ábel",
+		PL: "Izydora, Grzegorza",
+		AT: "Basilius"
+	}
+}

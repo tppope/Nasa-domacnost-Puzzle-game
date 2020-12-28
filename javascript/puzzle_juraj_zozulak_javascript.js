@@ -61,12 +61,12 @@ let
 function createPuzzlePieces() {
     let koeficientPosunu = 1;
     let sirkaObrazovky = window.innerWidth;
-    if (sirkaObrazovky >= 1200) koeficientPosunu = 1;
+    /*if (sirkaObrazovky >= 1200) koeficientPosunu = 1;
     else if (sirkaObrazovky >= 1050) koeficientPosunu = 0.6;
     else if (sirkaObrazovky >= 992) koeficientPosunu = 0.5;
     else if (sirkaObrazovky >= 768) koeficientPosunu = 0.45;
     else if (sirkaObrazovky >= 600) koeficientPosunu = 0.3;
-    else if (sirkaObrazovky < 600) koeficientPosunu = 0.2;
+    else if (sirkaObrazovky < 600) koeficientPosunu = 0.2;*/
 
 
     let puzzleDiv = $("#chodba_puzzle");

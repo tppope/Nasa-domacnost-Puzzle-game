@@ -16,6 +16,7 @@
  @media only screen and (max-width: 600px) {
     #chodba_puzzle {
         transform:scale(0.2);
+        left:-40vw;
     }
  }
 
@@ -23,6 +24,7 @@
  @media only screen and (min-width: 600px) {
     #chodba_puzzle {
         transform:scale(0.3);
+        left:-25vw;
     }
  }
  
@@ -30,6 +32,7 @@
  @media only screen and (min-width: 768px) {
     #chodba_puzzle {
         transform:scale(0.45);
+        left:0;
     }
  }
  
@@ -37,12 +40,14 @@
  @media only screen and (min-width: 992px) {
     #chodba_puzzle {
         transform:scale(0.5);
+        left:0;
     }
  }
 
 @media only screen and (min-width: 1050px) {
     #chodba_puzzle {
         transform:scale(0.6);
+        left:0;
     }
  }
  
@@ -50,5 +55,6 @@
  @media only screen and (min-width: 1200px) {
     #chodba_puzzle {
         transform:scale(1);
+        left:0;
     }
  } 
