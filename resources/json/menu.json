@@ -27,7 +27,7 @@
 				"sub": null
   			},
     			{
-   			   "src": "filip",
+   			   "src": "puzzle_filip_poljak_skobla.html",
   			    "title": "Filipova miestnosť",
 				"sub": null
   			},
@@ -44,7 +44,28 @@
     {
       "src": "about_us.html",
       "title": "O nás",
-      "sub": null
+      "sub":  [
+		  {
+			  "src": "http://147.175.121.202/~xstasova/omne_z1/index.html",
+			  "title": "Katarína Stasová",
+			  "sub": null
+		  },
+		  {
+			  "src": "http://147.175.121.202/~xpopikt/7243zadanie1/index.html",
+			  "title": "Tomáš Popík",
+			  "sub": null
+		  },
+		  {
+			  "src": "http://147.175.121.202/~xpoljakskobla/T-44-100/zadanie1/index.html",
+			  "title": "Filip Poljak Škobla",
+			  "sub": null
+		  },
+		  {
+			  "src": "http://147.175.121.202/~xzozulak/zadanie1/index.html",
+			  "title": "Juraj Zozuľak",
+			  "sub": null
+		  }
+	  ]
     }
   ]
 }
