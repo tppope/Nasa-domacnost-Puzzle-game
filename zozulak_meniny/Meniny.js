@@ -67,20 +67,19 @@ class Meniny extends HTMLElement {
     getDatum() {
         if (!this.virtualDOM.datumInput.checkValidity()) return false;
 
-
         let datumSplit = this.virtualDOM.datumInput.value.split(".");
         let datumSearch = {
             den: parseInt(datumSplit[0]),
             mesiac: parseInt(datumSplit[1])
         }
 
-
-        
         const meninyXHR = new XMLHttpRequest();
 
         meninyXHR.open("GET", "zozulak_meniny/meniny-dataset.xml");
         meninyXHR.responseType = "document";
         meninyXHR.send();
+
+        this.virtualDOM.resultList = [];
         
         meninyXHR.onload = this.getResultByDatum.bind(this, meninyXHR, datumSearch, true, true);
         
@@ -317,12 +316,8 @@ class Meniny extends HTMLElement {
                 this.shadowRoot.append(
                     this.virtualDOM.currentDayResult
                 );
-
-
                 if (pushToResultList) {
-                    console.log(builtResult);
                     this.virtualDOM.resultList.push(builtResult);
-                    console.log("resultList", this.virtualDOM.resultList);
                 }
             }
         }
