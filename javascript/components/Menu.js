@@ -99,17 +99,17 @@ class Menu extends HTMLElement{
     this.showMenu();
     }
     showMenu(){
-        var ul= this.shadowRoot.getElementById('menu');
+        let ul= this.shadowRoot.getElementById('menu');
 
         fetch('resources/json/menu.json')
             .then(response => response.json())
             .then(json =>  parseMenu(ul, json.menu));
         function parseMenu(ul, menu) {
 
-            for (var i = 0; i < menu.length; i++) {
-                var li = document.createElement("li");
+            for (let i = 0; i < menu.length; i++) {
+                let li = document.createElement("li");
                 li.classList.add("dropdown-submenu");
-                var a = document.createElement("a");
+                let a = document.createElement("a");
                 a.classList.add("dropdown-item");
                 a.classList.add("dropdown-item");
                 a.setAttribute("href",menu[i].src);
@@ -120,12 +120,12 @@ class Menu extends HTMLElement{
                 // If sub menus contain something
                 if (menu[i].sub != null) {
 
-                    var subul = document.createElement("ul");
-                    subul.id = "submenu-" + menu[i].src;
-                    subul.classList.add("dropdown-menu");
+                    let ul2 = document.createElement("ul");
+                    ul2.id = "submenu-" + menu[i].src;
+                    ul2.classList.add("dropdown-menu");
 
-                    li.appendChild(subul);
-                    parseMenu(subul, menu[i].sub);
+                    li.appendChild(ul2);
+                    parseMenu(ul2, menu[i].sub);
                 }else {
                     li.classList.remove('dropdown-submenu');
 
