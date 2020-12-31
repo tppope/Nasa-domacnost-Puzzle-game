@@ -87,7 +87,6 @@ function startGame(){
             accept: "#"+name_picture[i],
             tolerance: "fit",
             drop: function(){
-                draggableImage.style.transition = "all 1s";
                 changePosition(draggableImage,endPositionPicture[i]);
                 $( draggableImage ).draggable( "option", "disabled", true);
                 draggableImage.draggable = false;
