@@ -140,18 +140,11 @@ function placeOutside() {
 function transitionSetup(turnOn) {
     let timeCoefficient = 1 * turnOn;
 
-    Array.from( $("#chodba_puzzle img") ).forEach(function(element, index) {
+    Array.from($("#chodba_puzzle img")).forEach(function (element, index) {
         $(element).css({
             transition: "all " + timeCoefficient + "s",
             transitionDelay: (index * timeCoefficient) + "s"
         });
-    });
-}
-
-function dragAndDropDisable() {
-    Array.from( $("#chodba_puzzle img") ).forEach(function (element, index) {
-        element.draggable = false;
-        $(element).draggable("option", "disabled", true);
     });
 }
 
