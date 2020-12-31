@@ -58,7 +58,7 @@ $(window).on("load",function (){
 });
 
 function startDemo(){
-    setTimeout(change_reset_button,1);
+    setTimeout(reset,1);
     setTimeout(draggableFalse,20);
     beginningPicturesPosition();
     setTimeout(makeDemo,80);
@@ -67,8 +67,8 @@ function startDemo(){
 
 
 function startGame(){
-    change_start_button();
-    beginningPicturesPosition();
+    reset();
+    start();
     for(let i = 0; i<name_picture.length; i++){
         let draggableImage = document.getElementById(name_picture[i]);
         draggableImage.draggable = true;
@@ -96,6 +96,8 @@ function startGame(){
                 }
             }
         });
+        beginningPicturesPosition();
+
     }}
 
 function EndPosition(){
@@ -123,29 +125,8 @@ function changePosition(element,place){
     element.style.left = place[1];
 }
 
-function change_start_button(){
-    let start_button = document.getElementById("start_button");
-    if ($(start_button).hasClass("btn-outline-success")){
-        start();
-        start_button.classList.remove("btn-outline-success");
-        start_button.classList.add("btn-outline-danger");
-        start_button.innerText = "Reset";
-    }
-    else{
-        reset();
-        start();
-    }
-}
 
-function change_reset_button(){
-    let start_button = document.getElementById("start_button");
-    if ($(start_button).hasClass("btn-outline-danger")){
-        start_button.classList.remove("btn-outline-danger");
-        start_button.classList.add("btn-outline-success");
-        start_button.innerText = "Start";
-        reset();
-    }
-}
+
 
 
 function setEndPosition(){
