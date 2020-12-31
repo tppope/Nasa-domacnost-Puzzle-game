@@ -219,6 +219,10 @@ function showModal(){
 
 //STOPKY
 
+let startTime;
+let elapsedTime = 0;
+let timerInterval;
+
 function timeToString(time){
     let diffInHrs = time / 3600000;
     let hh = Math.floor(diffInHrs);
@@ -239,17 +243,10 @@ function timeToString(time){
     return `${formattedMM}:${formattedSS}:${formattedMS}`;
 }
 
-// Declare variables to use in our functions below
-let startTime;
-let elapsedTime = 0;
-let timerInterval;
-
-// Create function to modify innerHTML
 function print(txt){
     document.getElementById("display").innerHTML = txt;
 }
 
-// Create "start", "pause" and "reset" functions
 function start(){
     startTime = Date.now() - elapsedTime;
     timerInterval = setInterval(function printTime(){

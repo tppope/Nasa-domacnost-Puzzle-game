@@ -4,7 +4,7 @@ template.innerHTML = `
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
     
 
-    <nav class="navbar navbar-expand-md navbar-light py-3" style="background-color: #e3f2fd; position: relative;">
+    <nav class="navbar navbar-expand-md navbar-light py-3">
         <div>
             <button class="navbar-toggler" type="button" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,14 @@ template.innerHTML = `
                 </ul>
                 <web-counter></web-counter>
             </div>
-            
         </div>
     </nav>
         
-        <style> 
+        <style>
+            .navbar{
+                background: rgb(255,255,255);
+                background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(231,245,255,1) 50%, rgba(255,255,255,1) 100%);
+             }
        
             web-counter {
                 position:absolute;
@@ -32,7 +35,7 @@ template.innerHTML = `
             }
             
             .dropdown-submenu>.dropdown-menu {
-                top: 120%;modal-body-center
+                top: 118%;
                 left: 0;
                 margin-top: -6px;
                 margin-left: -1px;
@@ -55,7 +58,7 @@ template.innerHTML = `
                 border-style: solid;
                 border-width: 5px 5px 0 5px;
                 border-top-color: #ccc;
-                margin-top: 10px;
+                margin-top: 13px;
                 margin-left: 5px;
                 margin-right: -15px;
             }
@@ -83,6 +86,13 @@ template.innerHTML = `
                 font-family: "Arial",Arial,sans-serif;
                 font-size: 15px;
                 } 
+                #navbarContent
+                {
+                    margin-bottom: 10px;
+                }
+            }
+            a{
+                font-size: 19px;
             }
         </style>
 `;

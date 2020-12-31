@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tomášova miestnosť</title>
-    <link rel="icon" type="iťmage/png" href="resources/pictures/favicon/favicon_house.png">
+    <title>Filipova miestnosť</title>
+    <link rel="icon" type="image/png" href="resources/pictures/favicon/favicon_house.png">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/nasa_domacnost_style.css">
-    <link rel="stylesheet" href="css/puzzle_tomas_popik_style.css">
+    <link rel="stylesheet" href="css/puzzle_filip_poljak_skobla.css">
 
     <script>
-        let pageId = 3;
+        let pageId = 4;
     </script>
     <script src="javascript/breadcrumbs_javascript.js"></script>
 
@@ -20,7 +20,7 @@
     <script src="javascript/jQuery/jquery-ui.min.js"></script>
     <script src="javascript/jQuery/jquery.ui.touch-punch.min.js"></script>
     <script src="javascript/bootstrap/bootstrap.min.js"></script>
-    <script src="javascript/puzzle_tomas_popik_javascript.js"></script>
+    <script src="javascript/puzzle_filip_poljak_skobla_javascript.js"></script>
     <script src="javascript/components/Menu.js"></script>
 
     <script src="javascript/components/WebCounter.js"></script>
@@ -60,7 +60,7 @@
     </div>
 
     <h1>
-        Tomášova miestnosť
+        Filipova miestnosť
     </h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -71,65 +71,66 @@
     <me-nu></me-nu>
 
 </header>
-<section>
-    <!-- Modal -->
+<main>
+    
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLongTitle">GRATULUJEME!</h3>
+                    <h3 class="modal-title" id="exampleModalLongTitle">KONIEC</h3>
                 </div>
                 <div class="modal-body modal-body-center">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvoriť</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvorenie</button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="interfacePuzzle">
+    <div id="puzzleMenu">
         <div id="buttons">
             <button type="button" id="start_button" class="btn btn-outline-success" onclick="play()">Start</button>
-            <button type="button" id="demo_button" class="btn btn-warning" onclick="playDemo()">Demo</button>
+            <button type="button" id="demo_button" class="btn btn-warning" onclick="demo()">Demo</button>
         </div>
          <span class="time" id="display">00:00:00</span>
     </div>
 
-    <div id="puzzle_space">
-        <img id="floor" src="resources/pictures/popik_pictures/floor.png" alt="floor">
-        <div id="floor_droppable"></div>
-
-        <img id="night_table" src="resources/pictures/popik_pictures/night_table.png" alt="night_table">
+    <div id="puzzleGameBoard">
+        
+        <img id="left_floor_draggable" src="resources/pictures/poljak_skobla_pictures/lava_podlaha.png" alt="left-floor">
+        <div id="left_floor_droppable"></div>
+         
+        <img id="right_floor_draggable" src="resources/pictures/poljak_skobla_pictures/prava_podlaha.png" alt="right-floor">
+        <div id="right_floor_droppable"></div>
+         
+        <img id="left_wall_draggable" src="resources/pictures/poljak_skobla_pictures/lava_stena.png" alt="left-wall">
+        <div id="left_wall_droppable"></div>
+        
+        <img id="right_wall_draggable" src="resources/pictures/poljak_skobla_pictures/prava_stena.png" alt="right-wall">
+        <div id="right_wall_droppable"></div>
+        
+        <img id="night_table_draggable" src="resources/pictures/poljak_skobla_pictures/nocny_stolik.png" alt="night-table">
         <div id="night_table_droppable"></div>
 
-        <img id="bed" src="resources/pictures/popik_pictures/bed.png" alt="bed">
-        <div id="bed_droppable"></div>
-
-        <img id="pillows" src="resources/pictures/popik_pictures/pillows.png" alt="pillows">
+        <img id="pillows_draggable" src="resources/pictures/poljak_skobla_pictures/vankuse.png" alt="pillows">
         <div id="pillows_droppable"></div>
-
-        <img id="upper_bed" src="resources/pictures/popik_pictures/upper_bed.png" alt="upper_bed">
-        <div id="upper_bed_droppable"></div>
-
-        <img id="left_wall" src="resources/pictures/popik_pictures/left_wall.png" alt="left_wall">
-        <div id="left_wall_droppable"></div>
-
-        <img id="upper_wall" src="resources/pictures/popik_pictures/upper_wall.png" alt="upper_wall">
-        <div id="upper_wall_droppable"></div>
-
-        <img id="missing_wall" src="resources/pictures/popik_pictures/missing_wall.png" alt="missing_wall">
-        <div id="missing_wall_droppable"></div>
-
-        <img id="right_wall" src="resources/pictures/popik_pictures/right_wall.png" alt="right_wall">
-        <div id="right_wall_droppable"></div>
-
-        <img id="right_upper_wall" src="resources/pictures/popik_pictures/right_upper_wall.png" alt="right_upper_wall">
-        <div id="right_upper_wall_droppable"></div>
-
+         
+        <img id="table_draggable" src="resources/pictures/poljak_skobla_pictures/stol.png" alt="table">
+        <div id="table_droppable"></div>
+        
+        <img id="bed_draggable" src="resources/pictures/poljak_skobla_pictures/postel.png" alt="bed">
+        <div id="bed_droppable"></div>
+        
+        <img id="cupboard_draggable" src="resources/pictures/poljak_skobla_pictures/skrina.png" alt="cupboard">
+        <div id="cupboard_droppable"></div>
+        
+        <img id="roof_draggable" src="resources/pictures/poljak_skobla_pictures/strop.png" alt="roof">
+        <div id="roof_droppable"></div>
+        
     </div>
-</section>
+</main>
 <footer>
-    <span id="designedBy">Created by Tomáš Popík, 97908</span>
+    <span id="author">Created by <span class="author-name"> <a href="http://147.175.121.202/~xpoljakskobla/T-44-100/zadanie1/index.html"> Filip Poljak Škobla</span></a> , <span class="author-aisId">97907</span></span>
 </footer>
 </body>
 </html>

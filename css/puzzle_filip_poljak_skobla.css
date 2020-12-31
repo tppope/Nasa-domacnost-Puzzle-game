@@ -1,0 +1,257 @@
+#puzzleGameBoard
+{
+    position: relative;
+    height: 30vw;
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+    border: black solid 3px;
+    margin-bottom: 20vw;
+}
+
+#puzzleMenu
+{
+    position: relative;
+    height: 45px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/*** Stopky responzivita ***/
+@media (max-width: 768px)
+{
+    #buttons
+    {
+        left: 4vw !important;
+    }
+    #display
+    {
+        right: 4vw !important;
+    }
+}
+
+
+#puzzleGameBoard *
+{
+    position: absolute;
+}
+
+#puzzleGameBoard div
+{
+    z-index: -1;
+}
+
+#puzzleGameBoard img
+{
+    z-index: 0;
+}
+
+/*** Obrazok lavej casti podlahy ***/
+#left_floor_draggable
+{
+    top: 77.5%;
+    left: 0;
+    width: 35%;
+}
+
+#left_floor_droppable
+{
+    top: 75%;
+    left: -3%;
+    height: 32%;
+    width: 40%; 
+}
+
+/*** Obrazok pravej casti podlahy ***/
+#right_floor_draggable
+{
+    top: 69.85%;
+    left: 44.8%;
+    width: 55.4%;
+}
+
+#right_floor_droppable
+{
+    top: 62.5%;
+    left: 40.5%;
+    height: 43%;
+    width: 65%;
+    
+}
+/*** Obrazok lavej casti steny***/
+#left_wall_draggable
+{
+    top: 0%;
+    left: 0%;
+    width: 54%;
+}
+
+#left_wall_droppable
+{
+    top: -3%;
+    left: -3%;
+    height: 75%;
+    width: 60%;
+    
+}
+
+/*** Obrazok pravej casti steny ***/
+#right_wall_draggable
+{
+    top: 2%;
+    left: 53.5%;
+    width: 46.5%;
+}
+
+#right_wall_droppable
+{
+    top: 0%;
+    left: 50%;
+    height: 60%;
+    width: 55%;
+    
+}
+
+/*** Obrazok nocneho stolika pri posteli ***/
+#night_table_draggable
+{
+    top: 50%;
+    left: 0%;
+    width: 18.5%;
+}
+
+#night_table_droppable
+{
+    top: 47%;
+    left: -3%;
+    height: 42%;
+    width: 28%;
+}
+
+/*** Obrazok vankusov ***/
+#pillows_draggable
+{
+    top: 78.7%;
+    left: 31.4%;
+    width: 16.3%;
+}
+
+#pillows_droppable
+{
+    top: 75%;
+    left: 30%;
+    height: 28%;
+    width: 20%;
+}
+
+/*** Obrazok pracovneho stolika ***/
+#table_draggable
+{
+    top: 43.7%;
+    left: 68.4%;
+    width: 31.8%;
+}
+
+#table_droppable
+{
+    top: 40%;
+    left: 65%;
+    height: 47%;
+    width: 40%;
+}
+
+/*** Obrazok postele ***/
+#bed_draggable
+{
+    top: 46%;
+    left: 15.8%;
+    width: 45.2%;
+}
+
+#bed_droppable
+{
+    left: 10%;
+    top: 40%;
+    height: 55%;
+    width: 55%;
+}
+
+/*** Obrazok skrine ***/
+#cupboard_draggable
+{
+    top: 21.9%;
+    left: 48%;
+    width: 23.5%;
+}
+
+#cupboard_droppable
+{
+    left: 45%;
+    top: 20%;
+    height: 55%;
+    width: 30%;
+}
+
+/*** Obrazok stropu izby ***/
+#roof_draggable
+{
+    top: 0%;
+    left: 13.5%;
+    width: 86.5%;
+}
+
+#roof_droppable
+{
+    left: 8%;
+    top: -3%;
+    height: 20%;
+    width: 95%;
+}
+
+/*** Modal - Ukoncovacia sprava ***/
+h3
+{
+    margin: auto;
+}
+.modal-body-center
+{
+    text-align: center;
+}
+
+/*** Tlacidla ***/
+#buttons
+{
+    text-align: center;
+}
+#demo_button
+{
+    margin-left: 0.5%;
+}
+
+/*** Cas ***/
+#display
+{
+    position: absolute;
+    top: 0%;
+    right: 28vw;
+    color: black;
+    padding: 0.5%;
+    background-color: dodgerblue;
+    border-radius: 20px;
+}
+
+/*** Footer o autorovi ***/
+.author
+{
+    font-size: large;
+}
+
+.author-name
+{
+    color: dodgerblue;
+}
+
+.author-aisId
+{
+    color: firebrick;
+}

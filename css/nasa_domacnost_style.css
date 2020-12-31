@@ -5,7 +5,7 @@
 /*Title page*/
 div#title_picture{
     position: relative;
-    height: 56vw;
+    height: 55vw;
     overflow: hidden;
 }
 div#title_picture img{
@@ -113,7 +113,6 @@ div.profilePhoto{
     display: inline-block;
     background-color: green;
     margin-right: 4vw;
-    margin-top: 6%;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: black 5px 5px 5px;
@@ -145,6 +144,7 @@ td, th{
     text-align: left;
 }
 footer{
+    font-size: 1.1vw;
     background-color: white;
     width: 100%;
     text-align: center;
@@ -155,9 +155,19 @@ footer{
     background: #e3f2fd;
     font-weight: bold;
     font-family: "Arial",Arial,sans-serif;
-    font-size: 1.2vw;
+    font-size: 1vw;
     padding: 0.5vw 0 0.5vw 5px;
 }
+.breadcrumb{
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-family: "Arial",Arial,sans-serif;
+    font-size: 14px;
+    background: white;
+}
+
 @media (max-width: 768px){
     h1{
         font-size: 12vw;
@@ -188,7 +198,12 @@ footer{
         margin-right: auto;
     }
     #nameday-today{
-        font-size: 2vw;
-
+        font-size: 2.5vw;
+    }
+    .breadcrumb{
+        font-size: 1.4vw;
+    }
+    footer{
+        font-size: 2.2vw;
     }
 }
