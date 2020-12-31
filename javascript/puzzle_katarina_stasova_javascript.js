@@ -11,7 +11,7 @@ let name_picture = [
     "wardrobe",
     "window"];
 
-let right_places = [
+let endPositionPicture = [
     ["76.5%", "26.8%"],
     ["0%", "0%"],
     ["66.7%", "43.9%"],
@@ -25,7 +25,7 @@ let right_places = [
     ["19%", "32.2%"]
 ];
 
-let wrong_places = [
+let startPositionPicture = [
     ["120%", "-35%"],
     ["0%", "110%"],
     ["0%", "-25%"],
@@ -39,7 +39,7 @@ let wrong_places = [
     ["115%", "105%"]
 ];
 
-let wrong_places_mobile = [
+let startPositionPictureMobile = [
     ["247%", "30%"],
     ["165%", "50%"],
     ["105%", "-3%"],
@@ -54,70 +54,69 @@ let wrong_places_mobile = [
 ];
 
 $(window).on("load",function (){
-    stopDraggable();
+    draggableFalse();
 });
 
-function stopDraggable(){
+function startDemo(){
+    setTimeout(change_reset_button,1);
+    setTimeout(draggableFalse,20);
+    beginningPicturesPosition();
+    setTimeout(makeDemo,80);
+    setTimeout(setEndPosition,100);
+}
+
+
+function startGame(){
+    change_start_button();
+    beginningPicturesPosition();
+    for(let i = 0; i<name_picture.length; i++){
+        let draggableImage = document.getElementById(name_picture[i]);
+        draggableImage.draggable = true;
+        $( draggableImage ).draggable({
+            revert: "invalid",
+            disabled: false,
+            start: function (){
+                draggableImage.style.zIndex = "1";
+            },
+            stop: function (){
+                draggableImage.style.zIndex = "0";
+            }
+        });
+
+        $( "#"+name_picture[i]+"Drop" ).droppable({
+            accept: "#"+name_picture[i],
+            tolerance: "fit",
+            drop: function(){
+                draggableImage.style.transition = "all 1s";
+                changePosition(draggableImage,endPositionPicture[i]);
+                $( draggableImage ).draggable( "option", "disabled", true);
+                draggableImage.draggable = false;
+                if(isRightPosition()){
+                    EndPosition();
+                }
+            }
+        });
+    }}
+
+function EndPosition(){
+    pause();
+    document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
+    $('#exampleModalCenter').modal({
+        keyboard: false
+    });
+}
+
+function beginningPicturesPosition(){
+    setTimeout(EndDemo,40);
+    setTimeout(setStartPozition,60);
+}
+
+function draggableFalse(){
     for(let i = 0; i<name_picture.length; i++){
         let element = document.getElementById(name_picture[i]);
         element.draggable = false;
-        if ($( element ).hasClass("ui-draggable"))
-            $( element ).draggable( "option", "disabled", true );
     }
 }
-
-function setDragAndDrop(name,right_place){
-    let draggableImage = document.getElementById(name);
-    draggableImage.draggable = true;
-    $( draggableImage ).draggable({
-        revert: "invalid",
-        disabled: false,
-        start: function (){
-            draggableImage.style.zIndex = "1";
-        },
-        stop: function (){
-            draggableImage.style.zIndex = "0";
-        }
-    });
-
-    $( "#"+name+"_droppable" ).droppable({
-        accept: "#"+name,
-        tolerance: "fit",
-        drop: function(){
-            draggableImage.style.transition = "all 1s";
-            changePosition(draggableImage,right_place);
-            $( draggableImage ).draggable( "option", "disabled", true);
-            draggableImage.draggable = false;
-            if(isRightPosition()){
-                pause();
-                document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
-                $('#exampleModalCenter').modal({
-                    keyboard: false
-                });
-            }
-        }
-    });
-}
-
-function playDemo(){
-    setTimeout(change_reset_button,1);
-    setTimeout(stopDraggable,20);
-    startPlace();
-    setTimeout(turnOnTransition,80);
-    setTimeout(setRightPlace,100);
-}
-
-function startPlace(){
-    setTimeout(turnOffTransition,40);
-    setTimeout(setWrongPlace,60);
-}
-
-function play(){
-    change_start_button();
-    startPlace();
-    for(let i = 0; i<name_picture.length; i++){
-        setDragAndDrop(name_picture[i],right_places[i]);
-    }}
 
 function changePosition(element,place){
     element.style.top = place[0];
@@ -148,27 +147,29 @@ function change_reset_button(){
     }
 }
 
-function setWrongPlace(){
+
+function setEndPosition(){
+    for(let i = 0; i<name_picture.length; i++){
+        let element = document.getElementById(name_picture[i]);
+        changePosition(element,endPositionPicture[i]);
+    }
+}
+
+
+function setStartPozition(){
 
     let mediaQuery = window.matchMedia("(max-width: 768px)");
 
     for(let i = 0; i<name_picture.length; i++){
         let element = document.getElementById(name_picture[i]);
         if(mediaQuery.matches)
-            changePosition(element,wrong_places_mobile[i]);
+            changePosition(element,startPositionPictureMobile[i]);
         else
-            changePosition(element,wrong_places[i]);
+            changePosition(element,startPositionPicture[i]);
     }
 }
 
-function setRightPlace(){
-    for(let i = 0; i<name_picture.length; i++){
-        let element = document.getElementById(name_picture[i]);
-        changePosition(element,right_places[i]);
-    }
-}
-
-function turnOffTransition(){
+function EndDemo(){
     for(let i = 0; i<name_picture.length; i++){
         let element = document.getElementById(name_picture[i]);
         element.style.transition = "all 0s";
@@ -176,7 +177,7 @@ function turnOffTransition(){
     }
 }
 
-function turnOnTransition(){
+function makeDemo(){
     for(let i = 0; i<name_picture.length; i++){
         let element = document.getElementById(name_picture[i]);
         element.style.transition = "all 1s";
@@ -186,7 +187,7 @@ function turnOnTransition(){
 
 function isRightPosition(){
     for(let i = 0; i<name_picture.length; i++) {
-        if(document.getElementById(name_picture[i]).style.top !== right_places[i][0])
+        if(document.getElementById(name_picture[i]).style.top !== endPositionPicture[i][0])
             return false;
     }
     return true;
@@ -235,12 +236,12 @@ function start(){
     }, 10);
 }
 
-function pause(){
-    clearInterval(timerInterval);
-}
-
 function reset(){
     clearInterval(timerInterval);
     print("00:00:00");
     elapsedTime = 0;
+}
+
+function pause(){
+    clearInterval(timerInterval);
 }

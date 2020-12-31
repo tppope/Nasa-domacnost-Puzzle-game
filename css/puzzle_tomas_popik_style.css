@@ -85,7 +85,7 @@ img#right_upper_wall{
     width: 48.5%;
 }
 
-div#floor_droppable{
+div#floorDrop{
     top: 66.5%;
     left: -3%;
     height: 38%;
@@ -115,13 +115,13 @@ div#upper_bed_droppable{
     height: 37%;
     width: 38%;
 }
-div#left_wall_droppable{
+div#left_wallDrop{
     top: -3%;
     left: -3%;
     height: 68%;
     width: 56%;
 }
-div#upper_wall_droppable{
+div#upper_wallDrop{
     top: -4%;
     left: 17%;
     height: 29%;
@@ -133,7 +133,7 @@ div#missing_wall_droppable{
     height: 54%;
     width: 10%;
 }
-div#right_wall_droppable{
+div#right_wallDrop{
     left: 49%;
     top: 40%;
     height: 42%;
@@ -157,7 +157,7 @@ h3{
     top: 0;
     left: 27.5vw;
 }
-#demo_button{
+#demo{
     margin-left: 5px;
 }
 #display{
