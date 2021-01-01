@@ -240,7 +240,7 @@ $(document).ready(function(){
 
 function showModal() {
     $(".modal-body-center").html('Puzzle "chodba" ste zložili v čase ' + stringifyTime(elapsedTime));
-    $('#exampleModalCenter').modal({
+    $('#endGame').modal({
         keyboard: false
     });
 }

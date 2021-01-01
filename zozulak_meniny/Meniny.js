@@ -223,8 +223,6 @@ class Meniny extends HTMLElement {
                 aktZaznamData[ aktZaznamRaw[b].nodeName ] = aktZaznamRaw[b].innerHTML;
             }
 
-            console.log(aktZaznamData.den);
-            console.log(currentDatumTextual);
             if (aktZaznamData.den == currentDatumTextual) {
 
                 let short = document.createElement("div");

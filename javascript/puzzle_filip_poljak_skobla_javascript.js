@@ -195,7 +195,7 @@ function gameEnding()
 {
     clearInterval(timerInterval);
     document.querySelector(".modal-body-center").innerHTML = "Výsledný čas dokončenia puzzle je:  " + document.getElementById("display").textContent;
-    $('#exampleModalCenter').modal({
+    $('#successfulEndGame').modal({
         keyboard: false
     });
 }

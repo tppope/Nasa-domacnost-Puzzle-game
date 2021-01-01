@@ -212,7 +212,7 @@ function endGame(){
 
 function showModal(){
     document.querySelector(".modal-body-center").textContent = "Dokončili ste puzzle s časom " + document.getElementById("display").textContent;
-    $('#exampleModalCenter').modal({
+    $('#endGameDialog').modal({
         keyboard: false
     });
 }
