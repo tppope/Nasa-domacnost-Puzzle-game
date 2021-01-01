@@ -212,7 +212,7 @@ class Meniny extends HTMLElement {
     setupCurrentDayShortXMLOnload(meninyXHR, currentDatum) {
         let zaznamy = Array.from( meninyXHR.responseXML.documentElement.children );
 
-        let currentDatumTextual = currentDatum.mesiac + "" + currentDatum.den;
+        let currentDatumTextual = (currentDatum.mesiac < 10 ? "0" + currentDatum.mesiac : currentDatum.mesiac)  + "" + (currentDatum.den < 10 ? "0" + currentDatum.den : currentDatum.den);
         
         for (let a = 0; a < zaznamy.length; a++) {
             let aktZaznamRaw = zaznamy[a].children;
@@ -223,18 +223,22 @@ class Meniny extends HTMLElement {
                 aktZaznamData[ aktZaznamRaw[b].nodeName ] = aktZaznamRaw[b].innerHTML;
             }
 
+            console.log(aktZaznamData.den);
+            console.log(currentDatumTextual);
             if (aktZaznamData.den == currentDatumTextual) {
 
                 let short = document.createElement("div");
                 short.style.display = "inline";
 
-                short.append(
-                    "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + aktZaznamData.SK
-                );
+                if (aktZaznamData.SK != undefined) {
+                    short.append(
+                        "Dnes je " + currentDatum.den + ". " + currentDatum.mesiac + "., meniny má " + aktZaznamData.SK + ". "
+                    );
+                }
 
                 if (aktZaznamData.SKsviatky != undefined) {
                     short.append(
-                        ", dnešný sviatok je " + aktZaznamData.SKsviatky
+                        "Dnešný sviatok je " + aktZaznamData.SKsviatky
                     );
                 }
 
