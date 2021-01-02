@@ -208,3 +208,18 @@ footer{
         font-size: 2.2vw;
     }
 }
+
+@media print {
+    me-nu{
+        display: none !important;
+    }
+    #nameday-today{
+        display: none !important;
+    }
+    nav{
+        display: none !important;
+    }
+    footer{
+        display: none !important;
+    }
+}
