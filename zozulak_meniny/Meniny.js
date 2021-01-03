@@ -32,11 +32,12 @@ class Meniny extends HTMLElement {
             class: "form-control",
             type: "text",
             placeholder: "31.03. alebo 31.3. bez medzier",
-            pattern: "[0-9]{1,2}.[0-9]{1,2}.",
-            id: "datum"
+            pattern: "^\\s*(3[01]|[12][0-9]|0?[1-9])\\.(1[012]|0?[1-9])\\.",
+            id: "datum",
         });
 
         this.virtualDOM.datumInput.addEventListener("change", this.getDatum.bind(this));
+        this.virtualDOM.datumInput.addEventListener("input", this.hideTooltip.bind(this));
     }
 
     setupSearchInput() {
@@ -46,7 +47,7 @@ class Meniny extends HTMLElement {
             class: "form-control",
             type: "text",
             placeholder: "na diakritike a veľkosti písmen nezáleží",
-            id: "datum"
+            id: "fistName"
         });
 
         this.virtualDOM.searchInput.addEventListener("change", this.getSearchResultsXMLWrapper.bind(this));
@@ -63,9 +64,18 @@ class Meniny extends HTMLElement {
         </style>`;
     }
 
+    hideTooltip(){
+	    this.shadowRoot.getElementById("datumTooltip").style.visibility = "hidden";
+	    this.shadowRoot.getElementById("datumTooltip").style.opacity = "0";
+    }
 
     getDatum() {
-        if (!this.virtualDOM.datumInput.checkValidity()) return false;
+        if (!this.virtualDOM.datumInput.checkValidity()) {
+            this.shadowRoot.getElementById("datumTooltip").style.visibility = "visible";
+            this.shadowRoot.getElementById("datumTooltip").style.opacity = "1";
+            return false;
+        }
+
 
         let datumSplit = this.virtualDOM.datumInput.value.split(".");
         let datumSearch = {
@@ -377,12 +387,15 @@ class MeninyVyhladavanie extends Meniny {
         this.setupSearchInput();
         
         this.virtualDOM.resultListContainerDiv = document.createElement("div");
+        this.virtualDOM.resultListContainerDiv.style.position = "relative";
+        let tooltip = this.createTooltip();
 
 
         let br = document.createElement("br");
 
         this.shadowRoot.append(
             "Zadaj dátum: ",
+            tooltip,
             this.virtualDOM.datumInput,
             br.cloneNode(),
             "Zadaj meno alebo jeho časť: ",
@@ -390,6 +403,25 @@ class MeninyVyhladavanie extends Meniny {
             br.cloneNode(),
             this.virtualDOM.resultListContainerDiv
         );
+    }
+
+    createTooltip(){
+        let tooltip = document.createElement("span");
+        tooltip.textContent = "Zadajte datum takto: 31.03. alebo 31.3. bez medzier";
+        tooltip.id = "datumTooltip";
+        tooltip.style.position = "absolute";
+        tooltip.style.visibility = "hidden";
+        tooltip.style.opacity = "0";
+        tooltip.style.fontSize = "0.5em";
+        tooltip.style.color = "red";
+        tooltip.style.top = "40%";
+        tooltip.style.right = "3%";
+        tooltip.style.backgroundColor = "#E8E8E8";
+        tooltip.style.borderRadius = "10px";
+        tooltip.style.padding = "5px";
+        tooltip.style.transition =  "opacity 0.5s";
+        return tooltip;
+
     }
 }
 
