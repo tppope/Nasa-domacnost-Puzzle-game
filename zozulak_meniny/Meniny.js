@@ -412,7 +412,7 @@ class MeninyVyhladavanie extends Meniny {
         tooltip.style.position = "absolute";
         tooltip.style.visibility = "hidden";
         tooltip.style.opacity = "0";
-        tooltip.style.fontSize = "0.5em";
+        tooltip.style.fontSize = "0.7em";
         tooltip.style.color = "red";
         tooltip.style.top = "40%";
         tooltip.style.right = "3%";
