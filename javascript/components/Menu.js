@@ -109,17 +109,17 @@ class Menu extends HTMLElement{
     this.showMenu();
     }
     showMenu(){
-        var ul= this.shadowRoot.getElementById('menu');
+        let ul= this.shadowRoot.getElementById('menu');
 
         fetch('resources/json/menu.json')
             .then(response => response.json())
-            .then(json =>  parseMenu(ul, json.menu));
-        function parseMenu(ul, menu) {
+            .then(json =>  createMenu(ul, json.menu));
+        function createMenu(ul, menu) {
 
-            for (var i = 0; i < menu.length; i++) {
-                var li = document.createElement("li");
+            for (let i = 0; i < menu.length; i++) {
+                let li = document.createElement("li");
                 li.classList.add("dropdown-submenu");
-                var a = document.createElement("a");
+                let a = document.createElement("a");
                 a.classList.add("dropdown-item");
                 a.classList.add("dropdown-item");
                 a.setAttribute("href",menu[i].src);
@@ -130,12 +130,12 @@ class Menu extends HTMLElement{
                 // If sub menus contain something
                 if (menu[i].sub != null) {
 
-                    var subul = document.createElement("ul");
+                    let subul = document.createElement("ul");
                     subul.id = "submenu-" + menu[i].src;
                     subul.classList.add("dropdown-menu");
 
                     li.appendChild(subul);
-                    parseMenu(subul, menu[i].sub);
+                    createMenu(subul, menu[i].sub);
                 }else {
                     li.classList.remove('dropdown-submenu');
 
@@ -144,7 +144,6 @@ class Menu extends HTMLElement{
         }
     }
     showNavbar() {
-
         if (this.shadowRoot.querySelector('.show'))
             this.shadowRoot.querySelector('#navbarContent').classList.remove("show");
         else
@@ -152,7 +151,6 @@ class Menu extends HTMLElement{
     }
 
     connectedCallback() {
-
         this.shadowRoot.querySelector('.navbar-toggler').addEventListener("click", event => {
             this.showNavbar();
         });
@@ -161,6 +159,5 @@ class Menu extends HTMLElement{
 
 
 }
-
 
 window.customElements.define('me-nu', Menu);
